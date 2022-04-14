@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_px.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarchan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/10 13:19:40 by amarchan          #+#    #+#             */
-/*   Updated: 2021/12/13 12:49:50 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:37:47 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	ft_px(long unsigned int nbr, char *base)
 	if (!nbr_final)
 		return (0);
 	if (ft_check_base(base))
-		size_base = ft_strlen(base);
+		size_base = ft_printf_strlen(base);
 	len = ft_print(nbr_final, nbr, size_base, base);
 	free(nbr_final);
 	return (len);

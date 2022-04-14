@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 13:59:53 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/14 13:26:31 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/14 15:35:28 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-int	ft_strlen(const char *str)
+int	ft_printf_strlen(const char *str)
 {
 	int	i;
 
