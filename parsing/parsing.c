@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:39 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/14 16:05:11 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/14 18:14:56 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@ int	ft_panic(int errcode, int i)
 	else if (errcode == MALLOC_FAILURE)
 		ft_printf("Memory allocation failed.\n");
 	else if (errcode == EMPTY_LINE)
-		ft_printf("Found an empty line in map file.\n");		
+		ft_printf("Found an empty line in map file.\n");
+	else if (errcode == HOLE_WALL)
+		ft_printf("Found a hole in the wall col %d.\n", i);	
 	return (errcode);
 }
 
@@ -191,6 +193,60 @@ int	is_rectangular(t_list *lst)
 	}
 }
 
+int	col_is_not_a_wall(char *str)
+{
+	int	i;
+	int	max;
+
+	i = 0;
+	max = ft_strlen(str);
+	printf("max = %d\n", max);
+	while (str[i])
+	{
+		if (i == 0 && str[i] != 1)
+			return (-i);
+		if (i == max && str[i] != 1)
+			return (-1);
+		i++;
+	}
+	return (0);
+}
+
+int	line_is_not_a_wall(char *str)
+{
+	int	i;
+
+	while (str[i])
+	{
+		if (str[i] != 1)
+			return (-i);
+		i++;
+	}
+	return (0);
+}
+
+int	ft_check_walls(t_list *lst)
+{
+	t_list *iterator;
+	int	max;
+
+	iterator = lst;
+	while (iterator->next)
+		iterator = iterator->next;
+	max = iterator->index;
+	iterator = lst;
+	while (iterator)
+	{
+		if (iterator->index == 0 || iterator->index == max 
+			|| line_is_not_a_wall(iterator->line) != 0)
+			return (ft_panic(HOLE_WALL, line_is_not_a_wall(iterator->line)));
+		if (col_is_not_a_wall(iterator->line) != 0)
+			return (ft_panic(HOLE_WALL, col_is_not_a_wall(iterator->line)));
+		iterator = iterator->next;
+	}
+	return (1);
+}
+
 t_list	*ft_parse(char *argv)
 {	
 	
@@ -201,6 +257,7 @@ t_list	*ft_parse(char *argv)
 	err = is_rectangular(lst);
 	err = ft_check_elts(lst);
 	err = ft_count_elts(lst);
+	err = ft_check_walls(lst);
 	if (err > -5 && err < -1)
 	{
 		ft_clear(lst);
