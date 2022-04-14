@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/14 15:57:13 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/14 17:33:56 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 #define MALLOC_FAILURE -4
 #define ISNOT_REC -5
 #define EMPTY_LINE -6
+#define HOLE_WALL -7
 
 #define ESC_KEYCODE 65307
 #define UP 119
