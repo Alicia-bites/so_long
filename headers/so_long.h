@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/13 18:01:30 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/14 12:16:27 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_mlx
 	int		y;
 }	t_mlx;
 
-int		ft_panic(int errcode);
+int		ft_panic(int errcode, int i);
 t_list	*ft_parse(char *argv);
 void	ft_clear(t_list *lst);
 

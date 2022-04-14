@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarchan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 08:48:26 by amarchan          #+#    #+#             */
-/*   Updated: 2021/12/06 14:40:46 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/14 12:27:59 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "libft.h"
 
+#include "libft.h"
+//returns NULL if c wasn't found in s
+//else returns a ptr on the elt that
+//correspond to c.
 char	*ft_strchr(const char *s, int c)
 {
 	char	*str;

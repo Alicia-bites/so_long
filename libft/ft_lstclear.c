@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 17:27:42 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/13 17:30:56 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/14 13:58:29 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	ft_lstclear(t_list **lst)
 	{
 		prev = iterator;
 		iterator = iterator->next;
+		free(prev->line);
 		free(prev);
 	}
 	*lst = NULL;
