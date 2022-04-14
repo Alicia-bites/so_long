@@ -6,7 +6,7 @@
 #    By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 14:02:33 by amarchan          #+#    #+#              #
-#    Updated: 2022/04/13 17:51:50 by amarchan         ###   ########.fr        #
+#    Updated: 2022/04/14 13:26:11 by amarchan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ NAME = so_long
 
 NAME_LIBFT = libft.a
 
+NAME_FT_PRINTF = ft_printf.a
+
 NAME_MLX = libmlx.a
 
 NORMINETTE_BIN = norminette
@@ -34,6 +36,8 @@ NM_BIN = nm
 DIR_MLX = minilibx-linux/
 
 DIR_LIBFT = libft/
+
+DIR_FT_PRINTF = ft_printf/
 
 SRCS =	src/so_long.c \
 		parsing/parsing.c \
@@ -53,11 +57,12 @@ RM = rm -rf
 
 INC_DIR = headers
 INC_LIBFT = libft
+INC_FT_PRINTF = ft_printf
 
 .c.o: $(SRCS)
 	$(CC) $(CFLAGS) -c -I ${INC_DIR} -I ${INC_LIBFT} $< -o ${<:.c=.o}
 
-all: $(NAME_LIBFT) $(NAME_MLX) $(NAME) 
+all: $(NAME_LIBFT) $(NAME_MLX) $(NAME_FT_PRINTF) $(NAME) 
 
 $(NAME_LIBFT):
 	make -C $(DIR_LIBFT)
@@ -67,19 +72,24 @@ $(NAME_MLX):
 	make -C $(DIR_MLX)
 	cp $(DIR_MLX)libmlx.a .
 
+$(NAME_FT_PRINTF):
+	make -C $(DIR_FT_PRINTF)
+	cp $(DIR_FT_PRINTF)ft_printf.a .	
+
 $(NAME): ${OBJS}
-	gcc $(CFLAGS) -o $(NAME) $(OBJS) $(NAME_LIBFT) $(NAME_MLX) $(CFLAGS_MLX)
+	gcc $(CFLAGS) -o $(NAME) $(OBJS) $(NAME_LIBFT) $(NAME_MLX) $(NAME_FT_PRINTF) $(CFLAGS_MLX)
 
 clean:
 	${RM} ${OBJS}
 	make -C $(DIR_LIBFT) clean
 	make -C $(DIR_MLX) clean
+	make -C $(DIR_FT_PRINTF) clean
 
 fclean: clean
-	${RM} ${NAME} ${NAME_LIBFT} ${NAME_MLX}
-	make -C $(DIR_LIBFT) fclean
+	${RM} ${NAME} ${NAME_LIBFT} ${NAME_MLX} ${NAME_FT_PRINTF}
 	${RM} $(DIR_MLX)libmlx.a
 	${RM} $(DIR_MLX)libmlx_Linux.a
+	${RM} $(DIR_FT_PRINTF)ft_printf.a
 	
 
 re: fclean all
