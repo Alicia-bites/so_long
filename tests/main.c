@@ -18,6 +18,15 @@ typedef struct s_mlx // Pour passer ce qu'on veut aux events (hook) MLX
 	int		y;
 }	t_mlx;
 
+typedef struct	s_data 
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
+
 
 void	free_mlx(t_mlx mlx)
 {
@@ -60,9 +69,18 @@ int	ft_key_hook(int keycode, t_mlx *mlx)
 	return (keycode);
 }
 
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int*)dst = color;
+}
+
 int main()
 {
 	t_mlx	mlx;
+	t_data	img;
 	int		i;
 	int		j;
 
@@ -101,18 +119,22 @@ int main()
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 1000, 1000, "moonkey"); // peut etre null
 	
 	// Carre de 100 sur 100
-	for (size_t i = 0; i < 100; i++)
+	img.img = mlx_new_image(mlx.mlx_ptr, 1000, 1000);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, 
+		&img.line_length, &img.endian);
+	for (int i = 0; i < 100; i++)
 	{
-		for (size_t j = 0; j < 100; j++)
+		for (int j = 0; j < 100; j++)
 		{
-			mlx_pixel_put(mlx.mlx_ptr, mlx.win_ptr, i, j, 0xDEADBEEF);
+			my_mlx_pixel_put(&img, i, j, 0x00FF5733);
 		}												//  ^^^^^^^^
 														//  aarrggbb
 	}
-
+	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, img.img, i, j);
+	
 	// Charger une image
 	int image_width, image_height = 0;
-	mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./moonkey_64x64.xpm", &image_width, &image_height); // peut etre null
+	mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./../media/form_1_48x48.xpm", &image_width, &image_height); // peut etre null
 	printf("J'ai charge une image de taille %dx%d\n", image_width, image_height);
 	mlx.y = 250;
 	mlx.x = 250;
@@ -129,7 +151,7 @@ int main()
 	// 	y = 0;
 	// }
 
-	ft_render_player(&mlx);
+	// ft_render_player(&mlx);
 	mlx_hook(mlx.win_ptr, 17, 0, ft_redcross, &mlx);
 	mlx_hook(mlx.win_ptr, 2, 1, ft_key_hook, &mlx);
 	//	              key ^  ^ pressed (man X11)

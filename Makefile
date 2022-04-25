@@ -6,7 +6,7 @@
 #    By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 14:02:33 by amarchan          #+#    #+#              #
-#    Updated: 2022/04/17 12:14:57 by amarchan         ###   ########.fr        #
+#    Updated: 2022/04/25 15:11:01 by amarchan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ INC_LIBFT = libft
 INC_FT_PRINTF = ft_printf
 
 .c.o: $(SRCS)
-	$(CC) $(CFLAGS) -c -I ${INC_DIR} -I ${INC_LIBFT} $< -o ${<:.c=.o}
+	$(CC) $(CFLAGS) -c -I ${INC_DIR} -I ${INC_LIBFT} $< -o ${<:.c=.o} $(CFLAGS_MLX)
 
 all: $(NAME_LIBFT) $(NAME_MLX) $(NAME_FT_PRINTF) $(NAME) 
 

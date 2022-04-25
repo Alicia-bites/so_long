@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/17 12:14:15 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/25 16:14:24 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,19 @@ typedef struct s_mlx
 	void	*mlx_ptr;
 	void	*win_ptr;
 	void	*image;
+	int		sprite_size;
 	int		x;
 	int		y;
 }	t_mlx;
+
+typedef struct	s_data 
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
 
 //parsing
 int		ft_panic(int errcode, int i);
