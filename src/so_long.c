@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:04:29 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/22 15:07:21 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/25 14:27:49 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,36 @@ int	ft_key_hook(int keycode, t_mlx *mlx)
 	return (keycode);
 }
 
-int	ft_built_map(t_list *map)
+int get_map_height(t_list *map)
+{
+	t_list	*iterator;
+	int	map_height;
+
+	iterator = map;
+	while (iterator)
+	{
+		map_height = iterator->index;
+		iterator = iterator->next;		
+	}
+	return (map_height);
+}
+
+int	built_map(t_list *map)
 {
 	t_list	*iterator;
 	t_mlx	mlx;
 	int	i;
 	int	j;
+	int	map_length;
+	int	map_height;
 
+	map_length = ft_strlen(map->line);
+	map_height = get_map_height(map);
 	mlx.mlx_ptr = mlx_init();
 	if (!mlx.mlx_ptr)
 		return (1);
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 1020, 1020, "Moonkey"); // peut etre null
-	mlx_pixel_put(mlx.mlx_ptr, mlx.win_ptr, i, j, 0xDEADBEEF);
+	mlx_pixel_put(mlx.mlx_ptr, mlx.win_ptr, i, j, 0x00FF0000);
 	mlx.y = 0;
 	mlx.x = 0;
 	i = 0;
