@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "mlx.h"
+#include "../minilibx-linux/libmlx.h"
 
 #define ESC_KEYCODE 65307
 #define UP 119

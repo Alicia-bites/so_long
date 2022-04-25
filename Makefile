@@ -6,7 +6,7 @@
 #    By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 14:02:33 by amarchan          #+#    #+#              #
-#    Updated: 2022/04/14 13:26:11 by amarchan         ###   ########.fr        #
+#    Updated: 2022/04/17 12:14:57 by amarchan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,8 @@ DIR_FT_PRINTF = ft_printf/
 
 SRCS =	src/so_long.c \
 		parsing/parsing.c \
+		parsing/parsing_utils.c \
+		parsing/parsing_utils_2.c \
 		get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c \
 

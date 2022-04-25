@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/14 17:33:56 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/17 12:14:15 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <unistd.h>
 # include <stdint.h>
 # include <stdlib.h>
-# include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/libmlx.h"
 # include "../libft/libft.h"
 
 #define WRONG_NARG -1
@@ -46,8 +46,26 @@ typedef struct s_mlx
 	int		y;
 }	t_mlx;
 
+//parsing
 int		ft_panic(int errcode, int i);
 t_list	*ft_parse(char *argv);
+int		ft_count(char *str, char c);
+int		line_is_wall(char *str);
+int		col_is_wall(char *str);
+int		check_char(char *str);
+int		ft_check_walls(t_list *lst);
+int		is_rectangular(t_list *lst);
+int		ft_row_length(const char *s);
+t_list	*ft_read_map(char *argv);
+int		ft_count_elts(t_list *lst);
+int		ft_check_elts(t_list *lst);
+void	ft_print_lst(t_list *lst);
+t_list	*ft_create_list(char *line);
+int		ft_count_elts(t_list *lst);
+int		is_rectangular(t_list *lst);
+int		ft_row_length(const char *s);
+
+//clean up
 void	ft_clear(t_list *lst);
 
 #endif

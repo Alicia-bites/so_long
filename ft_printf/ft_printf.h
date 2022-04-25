@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 10:50:07 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/14 15:35:55 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/15 11:06:24 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define FT_PRINTF_H
 
 # include <stdio.h>
-# include <bsd/string.h>
+// # include <bsd/string.h>
 # include <stdarg.h> 
 # include <unistd.h>
 # include <stdint.h>

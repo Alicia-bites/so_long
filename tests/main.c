@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include "mlx.h"
+#include "../minilibx-linux/libmlx.h"
 
 #define ESC_KEYCODE 65307
 #define UP 119
@@ -44,7 +44,6 @@ int	ft_key_hook(int keycode, t_mlx *mlx)
 {
 	if (keycode != ESC_KEYCODE)
 	{
-		printf("Tu as appuye sur %d\n", keycode);
 		if (keycode == UP)
 			mlx->y -= 50;
 		else if (keycode == DOWN)
@@ -65,7 +64,9 @@ int	ft_key_hook(int keycode, t_mlx *mlx)
 
 int main()
 {
-	t_mlx	mlx; 
+	t_mlx	mlx;
+	int		i;
+	int		j;
 
 	// printf("MLX : %p\n", mlx_ptr);
 	// void *window = mlx_new_window(mlx_ptr, 250, 250, "aliciamlx");
@@ -100,20 +101,18 @@ int main()
 	// // La croix rouge (ou ESC sur so_long) doit seulement couper la boucle
 	// printf("Oh la boucle est terminee\n");
 	// free_mlx(mlx);
-
 	// La sale gueule d'Alicia
 	mlx.mlx_ptr = mlx_init();
 	if (!mlx.mlx_ptr)
 		return (1);
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 1010, 1010, "bouge ma tete"); // peut etre null
-	mlx.y = 250;
-	mlx.x = 250;
+	
 	// Charger une image
 	int image_width, image_height = 0;
-	mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./alicia.xpm", &image_width, &image_height); // peut etre null
+	mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./bleak_desk_clock.xpm", &image_width, &image_height); // peut etre null
 	printf("J'ai charge une image de taille %dx%d\n", image_width, image_height);
-
-
+	mlx.y = 250;
+	mlx.x = 250;
 
 	// while (x < 1010-460)
 	// {
