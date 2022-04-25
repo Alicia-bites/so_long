@@ -29,7 +29,7 @@ void	free_mlx(t_mlx mlx)
 
 int	ft_redcross(t_mlx *mlx)
 {
-	printf("Tu as clique sur la croix rouge\n");
+	printf("Leaving game. See you later!\n");
 	mlx_loop_end(mlx->mlx_ptr); // Si tu termines pas loop elle continura a afficher la fenetre detruite :/
 	return (0);
 }
@@ -51,15 +51,13 @@ int	ft_key_hook(int keycode, t_mlx *mlx)
 		else if (keycode == LEFT)
 			mlx->x -= 50;
 		else if (keycode == RIGHT)
-			mlx->x += 50;
-				
+			mlx->x += 50;	
 		if (keycode == UP || keycode == DOWN || keycode == LEFT || keycode == RIGHT)
 			ft_render_player(mlx);
 	}
-		
 	else
 		ft_redcross(mlx);
-	return (keycode); // retourner un truc osef ca peut etre un 0
+	return (keycode);
 }
 
 int main()
@@ -68,6 +66,8 @@ int main()
 	int		i;
 	int		j;
 
+	i = 0;
+	j = 0;
 	// printf("MLX : %p\n", mlx_ptr);
 	// void *window = mlx_new_window(mlx_ptr, 250, 250, "aliciamlx");
 	// if (!window)
@@ -80,15 +80,7 @@ int main()
 	// printf("MLX window : %p\n", window);
 	// mlx_hook(window, 17, 0, ft_redcross, &mlx);
 	
-	// // Carre de 100 sur 100
-	// for (size_t i = 0; i < 100; i++)
-	// {
-	// 	for (size_t j = 0; j < 100; j++)
-	// 	{
-	// 		mlx_pixel_put(mlx.mlx_ptr, mlx.win_ptr, i, j, 0xDEADBEEF);
-	// 	}												//  ^^^^^^^^
-	// 													//  aarrggbb
-	// }
+
 	// // Un autre carre de 100 sur 100
 	// for (size_t i = 100; i < 200; i++)
 	// {
@@ -103,13 +95,24 @@ int main()
 	// free_mlx(mlx);
 	// La sale gueule d'Alicia
 	mlx.mlx_ptr = mlx_init();
+	printf("mlx.mlx_ptr : %p\n", mlx.mlx_ptr);
 	if (!mlx.mlx_ptr)
 		return (1);
-	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 1010, 1010, "bouge ma tete"); // peut etre null
+	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, 1000, 1000, "moonkey"); // peut etre null
 	
+	// Carre de 100 sur 100
+	for (size_t i = 0; i < 100; i++)
+	{
+		for (size_t j = 0; j < 100; j++)
+		{
+			mlx_pixel_put(mlx.mlx_ptr, mlx.win_ptr, i, j, 0xDEADBEEF);
+		}												//  ^^^^^^^^
+														//  aarrggbb
+	}
+
 	// Charger une image
 	int image_width, image_height = 0;
-	mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./bleak_desk_clock.xpm", &image_width, &image_height); // peut etre null
+	mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./moonkey_64x64.xpm", &image_width, &image_height); // peut etre null
 	printf("J'ai charge une image de taille %dx%d\n", image_width, image_height);
 	mlx.y = 250;
 	mlx.x = 250;
