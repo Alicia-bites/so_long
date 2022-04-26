@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:04:29 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/26 15:04:45 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/26 15:39:01 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	ft_redcross(t_mlx *mlx)
 void ft_render_player(t_mlx *mlx)
 {
 	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->image, mlx->x, mlx->y);
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->player, mlx->x, mlx->y);
 }
 
 int	ft_key_hook(int keycode, t_mlx *mlx)
@@ -58,7 +58,6 @@ int	ft_key_hook(int keycode, t_mlx *mlx)
 		if (keycode == UP || keycode == DOWN || keycode == LEFT || keycode == RIGHT)
 			ft_render_player(mlx);
 	}
-		
 	else
 		ft_redcross(mlx);
 	return (keycode);
@@ -104,7 +103,7 @@ int	built_map(t_list *map)
 
 	mlx.mlx_ptr = mlx_init();
 	if (!mlx.mlx_ptr)
-		return (1);
+		return (0);
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, map_length, 
 		map_height, "Moonkey");
 	y = 0;
@@ -118,7 +117,7 @@ int	built_map(t_list *map)
 		{
 			if (iterator->line[x / mlx.sprite_size] == 'P')
 			{
-				mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./media/moonkey_112x112.xpm", &image_width, &image_height); // peut etre null
+				mlx.player = mlx_xpm_file_to_image(mlx.mlx_ptr, "./media/moonkey_112x112.xpm", &image_width, &image_height); // peut etre null
 				mlx.x = x;
 				mlx.y = y;
 				mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.image, x, y);
