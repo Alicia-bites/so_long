@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:04:29 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/25 16:25:02 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/26 11:26:39 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,20 +98,14 @@ int	built_map(t_list *map)
 	int	image_width;
 	int	image_height;
 
-	map_length = (ft_strlen(map->line) - 1) * 64;
-	map_height = (get_map_height(map)) * 64;
+	map_length = (ft_strlen(map->line) - 1) * 112;
+	map_height = (get_map_height(map)) * 112;
 
 	mlx.mlx_ptr = mlx_init();
-	printf("mlx.mlx_ptr : %p\n", mlx.mlx_ptr);
 	if (!mlx.mlx_ptr)
 		return (1);
-	printf("length = %d\n", map_length);
-	printf("height = %d\n", map_height);
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, map_length, 
 		map_height, "Moonkey"); // peut etre null
-	img.img = mlx_new_image(mlx.mlx_ptr, map_length, map_height);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, 
-		&img.line_length, &img.endian);
 	y = 0;
 	image_width = 0;
 	image_height = 0;
@@ -123,43 +117,40 @@ int	built_map(t_list *map)
 		{
 			if (iterator->line[x] == '1')
 			{
-				mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./../media/bleak_desk_pile_of_death_64x64.xpm", &image_width, &image_height); // peut etre null
-				printf("J'ai charge une image de taille %dx%d\n", image_width, image_height);
+				mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./../media/bleak_desk_pile_of_death_112x112.xpm", &image_width, &image_height); // peut etre null
 				mlx.y = y;
 				mlx.x = x;
-				x += 64;
+				x += 112;
 			}
-			// else if (iterator->line[x] == 'P')
-			// {
-			// 	my_mlx_pixel_put(&img, x, y, 0x00FF5733);
-			// 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, 
-			// 		img.img, x, y);
-			// 	x += 64;
-			// }
-			// else if (iterator->line[x] == 'E')
-			// {
-			// 	my_mlx_pixel_put(&img, x, y, 0x0036A42D);
-			// 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, 
-			// 		img.img, x, y);
-			// 	x+= 64;
-			// }
-			// else if (iterator->line[x] == 'C')
-			// {
-			// 	my_mlx_pixel_put(&img, x, y, 0x002D66A4);
-			// 	mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, 
-			// 		img.img, x, y);
-			// 	x += 64;
-			// }
+			else if (iterator->line[x] == 'P')
+			{
+				mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./../media/moonkey_112x112.xpm", &image_width, &image_height); // peut etre null
+				mlx.y = y;
+				mlx.x = x;
+				x += 112;
+			}
+			else if (iterator->line[x] == 'E')
+			{
+				mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./../media/exit_80x80.xpm", &image_width, &image_height); // peut etre null
+				mlx.y = y;
+				mlx.x = x;
+				x += 112;
+			}
+			else if (iterator->line[x] == 'C')
+			{
+				mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./../media/form_1_112x112.xpm", &image_width, &image_height); // peut etre null
+				mlx.y = y;
+				mlx.x = x;
+				x += 112;
+			}
 			else
-				x += 64;
+				x += 112;
 		}
-		printf("x = %d\n", x/64);
 		iterator = iterator->next;
-		y += 64;
+		y += 112;
 	}
 	mlx_hook(mlx.win_ptr, 17, 0, ft_redcross, &mlx);
 	mlx_hook(mlx.win_ptr, 2, 1, ft_key_hook, &mlx);
-	//	              key ^  ^ pressed (man X11)
 	mlx_loop(mlx.mlx_ptr);
 	mlx_destroy_image(mlx.mlx_ptr, mlx.image);
 	free_mlx(mlx);
