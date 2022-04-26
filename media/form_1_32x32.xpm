@@ -1,11 +1,11 @@
 /* XPM */
-static char *_b0159660fcb4a97c7528bfa8a7dbd6bOuSvSZTbDAFx20z9[] = {
+static char *result[] = {
 /* columns rows colors chars-per-pixel */
 "32 32 4 1 ",
 "  c black",
 ". c #98AFB5",
 "X c #B4CFD6",
-"o c white",
+"o c None",
 /* pixels */
 "oooooooooooooooooooooooooooooooo",
 "oooooooooooooooooooooooooooooooo",
