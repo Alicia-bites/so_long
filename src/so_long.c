@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:04:29 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/26 11:26:39 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/26 15:04:45 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,57 +97,52 @@ int	built_map(t_list *map)
 	int	map_height;
 	int	image_width;
 	int	image_height;
-
-	map_length = (ft_strlen(map->line) - 1) * 112;
-	map_height = (get_map_height(map)) * 112;
+	
+	mlx.sprite_size = 112;
+	map_length = (ft_strlen(map->line) - 1) * mlx.sprite_size;
+	map_height = (get_map_height(map)) * mlx.sprite_size;
 
 	mlx.mlx_ptr = mlx_init();
 	if (!mlx.mlx_ptr)
 		return (1);
 	mlx.win_ptr = mlx_new_window(mlx.mlx_ptr, map_length, 
-		map_height, "Moonkey"); // peut etre null
+		map_height, "Moonkey");
 	y = 0;
+	iterator = map;
 	image_width = 0;
 	image_height = 0;
-	iterator = map;
 	while (iterator)
 	{
 		x = 0;
 		while (x < map_length)
 		{
-			if (iterator->line[x] == '1')
+			if (iterator->line[x / mlx.sprite_size] == 'P')
 			{
-				mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./../media/bleak_desk_pile_of_death_112x112.xpm", &image_width, &image_height); // peut etre null
-				mlx.y = y;
+				mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./media/moonkey_112x112.xpm", &image_width, &image_height); // peut etre null
 				mlx.x = x;
-				x += 112;
+				mlx.y = y;
+				mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.image, x, y);
 			}
-			else if (iterator->line[x] == 'P')
+			else if (iterator->line[x / mlx.sprite_size] == '1')
 			{
-				mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./../media/moonkey_112x112.xpm", &image_width, &image_height); // peut etre null
-				mlx.y = y;
-				mlx.x = x;
-				x += 112;
+				mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./media/bleak_desk_pile_of_death_112x112.xpm", &image_width, &image_height); // peut etre null
+				mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.image, x, y);
+
 			}
-			else if (iterator->line[x] == 'E')
+			else if (iterator->line[x / mlx.sprite_size] == 'E')
 			{
-				mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./../media/exit_80x80.xpm", &image_width, &image_height); // peut etre null
-				mlx.y = y;
-				mlx.x = x;
-				x += 112;
+				mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./media/exit_112x112.xpm", &image_width, &image_height); // peut etre null
+				mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.image, x, y);				
 			}
-			else if (iterator->line[x] == 'C')
+			else if (iterator->line[x / mlx.sprite_size] == 'C')
 			{
-				mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./../media/form_1_112x112.xpm", &image_width, &image_height); // peut etre null
-				mlx.y = y;
-				mlx.x = x;
-				x += 112;
+				mlx.image = mlx_xpm_file_to_image(mlx.mlx_ptr, "./media/form_1_112x112.xpm", &image_width, &image_height); // peut etre null
+				mlx_put_image_to_window(mlx.mlx_ptr, mlx.win_ptr, mlx.image, x, y);
 			}
-			else
-				x += 112;
+			x += mlx.sprite_size;
 		}
 		iterator = iterator->next;
-		y += 112;
+		y += mlx.sprite_size;
 	}
 	mlx_hook(mlx.win_ptr, 17, 0, ft_redcross, &mlx);
 	mlx_hook(mlx.win_ptr, 2, 1, ft_key_hook, &mlx);
