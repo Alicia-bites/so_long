@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:04:29 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/27 16:19:21 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/27 19:00:46 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	ft_redcross(t_mlx *mlx)
 
 void ft_render_player(t_mlx *mlx)
 {
-	// mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->player, mlx->x, mlx->y);
 }
 
@@ -141,13 +140,13 @@ void	load_images(t_mlx *mlx)
 	
 	arr[0] = load_sprite(mlx, "./media/background_1_112x112.xpm", "bg");
 	arr[1] = load_sprite(mlx, "./media/bleak_desk_clock_112x112.xpm", "desk_clock");
-	arr[3] = load_sprite(mlx, "./media/bleak_desk_pile_of_death_112x112.xpm", "desk_pile");
-	arr[4] = load_sprite(mlx, "./media/bleak_desk_poison_water_112x112.xpm", "desk_poison");
-	arr[5] = load_sprite(mlx, "./media/exit_112x112.xpm", "exit");
-	arr[6] = load_sprite(mlx, "./media/form_1_112x112.xpm", "form_1");
-	arr[7] = load_sprite(mlx, "./media/form_2_112x112.xpm", "form_2");
-	arr[8] = load_sprite(mlx, "./media/form_3_112x112.xpm", "form_3");
-	arr[9] = load_sprite(mlx, "./media/moonkey_112x112.xpm", "moonkey");	
+	arr[2] = load_sprite(mlx, "./media/bleak_desk_pile_of_death_112x112.xpm", "desk_pile");
+	arr[3] = load_sprite(mlx, "./media/bleak_desk_poison_water_112x112.xpm", "desk_poison");
+	arr[4] = load_sprite(mlx, "./media/exit_112x112.xpm", "exit");
+	arr[5] = load_sprite(mlx, "./media/form_1_112x112.xpm", "form_1");
+	arr[6] = load_sprite(mlx, "./media/form_2_112x112.xpm", "form_2");
+	arr[7] = load_sprite(mlx, "./media/form_3_112x112.xpm", "form_3");
+	arr[8] = load_sprite(mlx, "./media/moonkey_112x112.xpm", "moonkey");	
 	mlx->sprites = arr;
 }
 
@@ -211,6 +210,15 @@ int	draw_map(t_list *map, t_mlx *mlx)
 	return (0);
 }
 
+void	destroy_sprites(t_mlx *mlx)
+{
+	int	i;
+
+	i = 0;
+	while (i < SPRITE_COUNT)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->sprites[i++].image);
+}
+
 int	start_game(t_list *map)
 {
 	t_list	*iterator;
@@ -230,7 +238,7 @@ int	start_game(t_list *map)
 	mlx_hook(mlx.win_ptr, 17, 0, ft_redcross, &mlx);
 	mlx_hook(mlx.win_ptr, 2, 1, ft_key_hook, &mlx);
 	mlx_loop(mlx.mlx_ptr);
-	mlx_destroy_image(mlx.mlx_ptr, mlx.image); // < TODO : destroy all the sprites
+	destroy_sprites(&mlx);
 	free_mlx(mlx);
 	return (0);
 }
