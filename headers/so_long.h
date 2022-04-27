@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/25 16:14:24 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/27 15:08:30 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,29 @@
 #define LEFT 97
 #define RIGHT 100
 
+#define SPRITE_COUNT 30
+
+typedef struct s_sprite
+{
+	void	*image;
+	char	*name;
+}	t_sprite;
+
 typedef struct s_mlx
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	void	*image;
-	int		sprite_size;
-	int		x;
-	int		y;
+	int			image_height;
+	int			image_width;
+	int			map_height;
+	int			map_length;
+	int			sprite_size;
+	int			x;
+	int			y;
+	t_sprite	*sprites;
+	void		*background;
+	void		*image;
+	void		*mlx_ptr;
+	void		*player;
+	void		*win_ptr;
 }	t_mlx;
 
 typedef struct	s_data 
