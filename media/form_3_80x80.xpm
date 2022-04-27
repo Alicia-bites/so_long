@@ -1,11 +1,11 @@
 /* XPM */
-static char *form_1_80x80[] = {
+static char *form_3_80x80[] = {
 /* columns rows colors chars-per-pixel */
 "80 80 5 1 ",
 "  c black",
 ". c #5C565B",
-"X c #98AFB5",
-"o c #B4CFD6",
+"X c #A49CA4",
+"o c #C4BCC4",
 "O c #D1C5CF",
 /* pixels */
 "................................................................................",

@@ -1,5 +1,5 @@
 /* XPM */
-static char *result[] = {
+static char *background_1_80x80[] = {
 /* columns rows colors chars-per-pixel */
 "80 80 2 1 ",
 "  c #5C565B",
