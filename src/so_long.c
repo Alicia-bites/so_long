@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:04:29 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 17:45:58 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/28 17:51:07 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,6 +297,7 @@ int	start_game(t_list *map)
 	t_data	img;
 	
 	mlx.map = map;
+	mlx.win_ptr = NULL;
 	mlx.sprite_size = 112;
 	mlx.map_length = (ft_strlen(map->line) - 1) * mlx.sprite_size;
 	mlx.map_height = (get_map_height(map)) * mlx.sprite_size;
