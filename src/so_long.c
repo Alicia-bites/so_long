@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:04:29 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 17:51:07 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/28 17:53:19 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,13 +205,12 @@ t_sprite	load_sprite(t_mlx *mlx, char *path, char *name)
 	output.image = mlx_xpm_file_to_image(mlx->mlx_ptr, path,
 		&mlx->image_width, &mlx->image_height);
 	output.name = name;
-	printf("output.image = %p\n", output.image);
 	if (!output.image)
 	{
 		destroy_sprites(mlx);
 		ft_clear(mlx->map);
 		free_mlx(mlx);
-		exit(EXIT_FAILURE); // TODO : Quitter et liberer la mlx et les sprites
+		exit(EXIT_FAILURE);
 	}
 	return (output);
 }
@@ -224,13 +223,12 @@ void	sort_sprites_in_tab(t_mlx *mlx)
 	arr = malloc(sizeof(t_sprite) * SPRITE_COUNT);
 	ft_bzero(arr, sizeof(t_sprite) * SPRITE_COUNT);
 	mlx->sprites = arr;
-	// arr[0] = load_sprite(mlx, "./media/background_1_112x112.xpm", "bg");	
 	arr[0] = load_sprite(mlx, "./media/background_1_112x112.xpm", "bg");
 	arr[1] = load_sprite(mlx, "./media/bleak_desk_clock_112x112.xpm",
 		"desk_clock");
 	arr[2] = load_sprite(mlx, "./media/bleak_desk_pile_of_death_112x112.xpm",
 		"desk_pile");
-	arr[3] = load_sprite(mlx, "./media/bleak_desk_poison_wate_112x112.xpm",
+	arr[3] = load_sprite(mlx, "./media/bleak_desk_poison_water_112x112.xpm",
 		"desk_poison");
 	arr[4] = load_sprite(mlx, "./media/exit_112x112.xpm", "exit");
 	arr[5] = load_sprite(mlx, "./media/form_1_112x112.xpm", "form_1");

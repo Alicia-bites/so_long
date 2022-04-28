@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 12:11:33 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 17:51:23 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/28 17:53:05 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,7 @@ void	destroy_sprites(t_mlx *mlx)
 
 	i = 0;
 	while (mlx->sprites[i].image)
-	{
-		printf("i = %d\n", i);
-		fflush(0);
 		mlx_destroy_image(mlx->mlx_ptr, mlx->sprites[i++].image);
-	}
 }
 
 void	ft_clear(t_list *lst)
