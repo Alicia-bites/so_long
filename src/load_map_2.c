@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_up.c                                         :+:      :+:    :+:   */
+/*   load_map_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 12:11:33 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 18:38:01 by amarchan         ###   ########.fr       */
+/*   Created: 2022/04/28 17:58:10 by amarchan          #+#    #+#             */
+/*   Updated: 2022/04/28 18:33:21 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,36 @@
 #include "../libft/libft.h"
 #include "../minilibx-linux/libmlx.h"
 
-void	destroy_sprites(t_mlx *mlx)
+//compute map height
+int	get_map_height(t_list *map)
 {
-	int	i;
+	t_list	*iterator;
+	int		map_height;
 
-	i = 0;
-	while (mlx->sprites[i].image)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->sprites[i++].image);
+	iterator = map;
+	while (iterator)
+	{
+		map_height = iterator->index;
+		iterator = iterator->next;
+	}
+	return (map_height + 1);
 }
 
-void	ft_clear(t_list *lst)
+//open background image and display in window
+void	draw_background(t_mlx *mlx)
 {
-	ft_lstclear(&lst);
-	ft_lstclear_back(&lst);
-}
+	int	x;
+	int	y;
 
-void	free_mlx(t_mlx *mlx)
-{
-	if (mlx->win_ptr)
-		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
-	mlx_destroy_display(mlx->mlx_ptr);
-	free(mlx->mlx_ptr);
-	free(mlx->sprites);
+	x = 0;
+	while (x < mlx->map_length)
+	{
+		y = 0;
+		while (y < mlx->map_height)
+		{
+			render_sprite(mlx, "bg", x, y);
+			y += mlx->sprite_size;
+		}
+		x += mlx->sprite_size;
+	}
 }

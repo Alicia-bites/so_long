@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_up.c                                         :+:      :+:    :+:   */
+/*   move_player_2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 12:11:33 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 18:38:01 by amarchan         ###   ########.fr       */
+/*   Created: 2022/04/28 18:00:37 by amarchan          #+#    #+#             */
+/*   Updated: 2022/04/28 18:37:35 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,29 @@
 #include "../libft/libft.h"
 #include "../minilibx-linux/libmlx.h"
 
-void	destroy_sprites(t_mlx *mlx)
+//put player on the screen
+void	ft_render_player(t_mlx *mlx)
 {
-	int	i;
-
-	i = 0;
-	while (mlx->sprites[i].image)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->sprites[i++].image);
+	render_sprite(mlx, "moonkey", mlx->player_x, mlx->player_y);
 }
 
-void	ft_clear(t_list *lst)
+//clean up screen for player to move around
+void	ft_clear_player(t_mlx *mlx)
 {
-	ft_lstclear(&lst);
-	ft_lstclear_back(&lst);
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->sprites->image,
+		mlx->player_x, mlx->player_y);
 }
 
-void	free_mlx(t_mlx *mlx)
+t_list	*get_pos_right_left(t_mlx *mlx)
 {
-	if (mlx->win_ptr)
-		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
-	mlx_destroy_display(mlx->mlx_ptr);
-	free(mlx->mlx_ptr);
-	free(mlx->sprites);
+	t_list	*iterator;
+
+	iterator = mlx->map;
+	while (iterator->next)
+	{	
+		if (iterator->index == mlx->player_y / mlx->sprite_size)
+			break ;
+		iterator = iterator->next;
+	}
+	return (iterator);
 }

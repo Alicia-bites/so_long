@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:39 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 14:06:33 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/28 18:47:42 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,31 +38,32 @@ t_list	*ft_create_list(char *line)
 	return (lst);
 }
 
-void	ft_print_lst(t_list *lst)
-{
-	t_list *iterator;
+//FOR DEBUG
+// void	ft_print_lst(t_list *lst)
+// {
+// 	t_list *iterator;
 
-	iterator = lst;
-	while (iterator)
-	{
-		printf("index = %d\n", iterator->index);
-		printf("%s", iterator->line);
-		iterator = iterator->next;		
-	}
-	puts("\n");
-}
+// 	iterator = lst;
+// 	while (iterator)
+// 	{
+// 		printf("index = %d\n", iterator->index);
+// 		printf("%s", iterator->line);
+// 		iterator = iterator->next;		
+// 	}
+// 	puts("\n");
+// }
 
 //returns error INVALID ARG if a char different from
 //1, 0, P, E, C, and \n is found
 int	ft_check_elts(t_list *lst)
 {
 	t_list	*iterator;
-	
+
 	iterator = lst;
 	while (iterator)
 	{
 		if ((check_char(iterator->line) != 1))
-			return (ft_panic(INVALID_ARG, check_char(iterator->line)));		
+			return (ft_panic(INVALID_ARG, check_char(iterator->line)));
 		iterator = iterator->next;
 	}
 	return (1);
@@ -87,14 +88,14 @@ t_list	*ft_read_map(char *argv)
 		lst = ft_create_list(line);
 		line = get_next_line(fd);
 	}
-	ft_print_lst(lst);
+	// ft_print_lst(lst);
 	return (lst);
 }
 
 int	ft_check_walls(t_list *lst)
 {
-	t_list *iterator;
-	int	max;
+	t_list	*iterator;
+	int		max;
 
 	iterator = lst;
 	while (iterator->next)
@@ -103,9 +104,9 @@ int	ft_check_walls(t_list *lst)
 	iterator = lst;
 	while (iterator)
 	{
-		if ((iterator->index == 0 || iterator->index == max) 
+		if ((iterator->index == 0 || iterator->index == max)
 			&& line_is_wall(iterator->line) != 1)
-				return (ft_panic(HOLE_WALL, line_is_wall(iterator->line)));
+			return (ft_panic(HOLE_WALL, line_is_wall(iterator->line)));
 		if (col_is_wall(iterator->line) != 1)
 			return (ft_panic(HOLE_WALL, col_is_wall(iterator->line)));
 		iterator = iterator->next;
@@ -115,10 +116,9 @@ int	ft_check_walls(t_list *lst)
 
 t_list	*ft_parse(char *argv)
 {	
-	
 	int		err;
 	t_list	*lst;
-	
+
 	lst = ft_read_map(argv);
 	err = is_rectangular(lst);
 	err = ft_check_elts(lst);

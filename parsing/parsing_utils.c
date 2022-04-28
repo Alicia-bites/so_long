@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 12:06:14 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/17 13:36:36 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/28 18:41:25 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 #include "../ft_printf/ft_printf.h"
 #include "../headers/get_next_line.h"
 
-
 int	ft_panic(int errcode, int i)
 {
-	// printf("i in ft_panic = %d\n", i);
 	ft_putstr_fd("Error", 1, 2);
 	if (errcode == WRONG_NARG)
 		ft_printf("so_long takes one .ber as arg\n");
@@ -34,7 +32,7 @@ int	ft_panic(int errcode, int i)
 	else if (errcode == EMPTY_LINE)
 		ft_printf("Found an empty line in map file.\n");
 	else if (errcode == HOLE_WALL)
-		ft_printf("Found a hole in the wall col %d.\n", (-i) + 1);	
+		ft_printf("Found a hole in the wall col %d.\n", (-i) + 1);
 	return (errcode);
 }
 
@@ -43,10 +41,11 @@ int	check_char(char *str)
 	int	i;
 
 	i = 0;
-	while(str[i])
+	while (str[i])
 	{
-		if (str[i] != '1' && str[i] != '0' && str[i] != 'P' 
-			&& str[i] != 'E' && str[i] != '\n' && str[i] != 'C' && str[i] != '\0')
+		if (str[i] != '1' && str[i] != '0' && str[i] != 'P'
+			&& str[i] != 'E' && str[i] != '\n'
+			&& str[i] != 'C' && str[i] != '\0')
 			return (-i);
 		i++;
 	}

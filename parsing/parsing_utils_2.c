@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 12:12:52 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 14:06:09 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/28 18:39:42 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	ft_row_length(const char *s)
 
 int	is_rectangular(t_list *lst)
 {
-	int	len;
-	int	index;
+	int		len;
+	int		index;
 	t_list	*iterator;
 
 	iterator = lst;
@@ -48,9 +48,9 @@ int	is_rectangular(t_list *lst)
 int	ft_count_elts(t_list *lst)
 {
 	t_list	*iterator;
-	int	count_p;
-	int	count_c;
-	int	count_e;
+	int		count_p;
+	int		count_c;
+	int		count_e;
 
 	iterator = lst;
 	count_p = 0;

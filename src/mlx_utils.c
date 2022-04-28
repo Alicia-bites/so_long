@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clean_up.c                                         :+:      :+:    :+:   */
+/*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/28 12:11:33 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 18:38:01 by amarchan         ###   ########.fr       */
+/*   Created: 2022/04/28 17:58:55 by amarchan          #+#    #+#             */
+/*   Updated: 2022/04/28 18:33:53 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,19 @@
 #include "../libft/libft.h"
 #include "../minilibx-linux/libmlx.h"
 
-void	destroy_sprites(t_mlx *mlx)
+//close window
+int	ft_redcross(t_mlx *mlx)
 {
-	int	i;
-
-	i = 0;
-	while (mlx->sprites[i].image)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->sprites[i++].image);
+	printf("Leaving the game. See you later!\n");
+	mlx_loop_end(mlx->mlx_ptr);
+	return (0);
 }
 
-void	ft_clear(t_list *lst)
+//put pixels in windows
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
-	ft_lstclear(&lst);
-	ft_lstclear_back(&lst);
-}
+	char	*dst;
 
-void	free_mlx(t_mlx *mlx)
-{
-	if (mlx->win_ptr)
-		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
-	mlx_destroy_display(mlx->mlx_ptr);
-	free(mlx->mlx_ptr);
-	free(mlx->sprites);
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }

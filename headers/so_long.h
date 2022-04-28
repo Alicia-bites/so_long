@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 17:45:27 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/28 18:47:15 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,22 @@
 # include "../minilibx-linux/libmlx.h"
 # include "../libft/libft.h"
 
-#define WRONG_NARG -1
-#define INVALID_ARG -2
-#define INVALID_NARG -3
-#define MALLOC_FAILURE -4
-#define ISNOT_REC -5
-#define EMPTY_LINE -6
-#define HOLE_WALL -7
-#define PTR_FAIL -8
+# define WRONG_NARG -1
+# define INVALID_ARG -2
+# define INVALID_NARG -3
+# define MALLOC_FAILURE -4
+# define ISNOT_REC -5
+# define EMPTY_LINE -6
+# define HOLE_WALL -7
+# define PTR_FAIL -8
 
-#define ESC_KEYCODE 65307
-#define UP 119
-#define DOWN 115
-#define LEFT 97
-#define RIGHT 100
+# define ESC_KEYCODE 65307
+# define UP 119
+# define DOWN 115
+# define LEFT 97
+# define RIGHT 100
 
-#define SPRITE_COUNT 9
+# define SPRITE_COUNT 9
 
 typedef struct s_sprite
 {
@@ -63,7 +63,7 @@ typedef struct s_mlx
 	void		*win_ptr;
 }	t_mlx;
 
-typedef struct	s_data 
+typedef struct s_data
 {
 	void	*img;
 	char	*addr;
@@ -91,8 +91,10 @@ int			ft_count_elts(t_list *lst);
 int			is_rectangular(t_list *lst);
 int			ft_row_length(const char *s);
 
-//game
+//so_long
 int			start_game(t_list *map);
+
+//load_map
 int			draw_map(t_list *map, t_mlx *mlx);
 void		place_elt(t_mlx *mlx, int x, int y, int elt);
 void		sort_sprites_in_tab(t_mlx *mlx);
@@ -101,10 +103,23 @@ void		render_sprite(t_mlx *mlx, char *name, int x, int y);
 void		draw_background(t_mlx *mlx);
 int			get_map_height(t_list *map);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
+//move_player
 int			ft_key_hook(int keycode, t_mlx *mlx);
+int			can_go(t_mlx *mlx, int keycode);
+t_list		*get_y(t_mlx *mlx, int keycode);
+t_list		*get_pos_up(t_mlx *mlx);
+t_list		*get_pos_down(t_mlx *mlx);
 void		ft_clear_player(t_mlx *mlx);
 void		ft_render_player(t_mlx *mlx);
+
+//move_player_2
+t_list		*get_pos_right_left(t_mlx *mlx);
+void		ft_render_player(t_mlx *mlx);
+
+//mlx_utils
 int			ft_redcross(t_mlx *mlx);
+void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 //clean up
 void		ft_clear(t_list *lst);
