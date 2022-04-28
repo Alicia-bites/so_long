@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 13:39:26 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/28 17:45:27 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct s_mlx
 	int			player_x;
 	int			player_y;
 	t_sprite	*sprites;
-	void		*background;
 	void		*image;
 	void		*mlx_ptr;
 	void		*player;
@@ -110,6 +109,6 @@ int			ft_redcross(t_mlx *mlx);
 //clean up
 void		ft_clear(t_list *lst);
 void		destroy_sprites(t_mlx *mlx);
-void		free_mlx(t_mlx mlx);
+void		free_mlx(t_mlx *mlx);
 
 #endif

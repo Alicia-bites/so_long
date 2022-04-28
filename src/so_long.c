@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:04:29 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 16:27:56 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/28 17:45:58 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,11 @@ void ft_render_player(t_mlx *mlx)
 //clean up screen for player to move around
 void ft_clear_player(t_mlx *mlx)
 {
-	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->background, mlx->player_x, mlx->player_y);
+	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->sprites->image, 
+		mlx->player_x, mlx->player_y);
 }
 
-t_list	*get_pos(t_mlx *mlx)
+t_list	*get_pos_right_left(t_mlx *mlx)
 {
 	t_list	*iterator;
 
@@ -49,40 +50,46 @@ t_list	*get_pos(t_mlx *mlx)
 	return (iterator);
 }
 
+t_list	*get_pos_down(t_mlx *mlx)
+{
+	t_list	*iterator;
+
+	iterator = mlx->map;
+	while (iterator)
+	{	
+		if (iterator->index == (mlx->player_y + mlx->sprite_size)
+				/ mlx->sprite_size)
+			break;
+		iterator = iterator->next;
+	}
+	return (iterator);
+}
+
+t_list	*get_pos_up(t_mlx *mlx)
+{
+	t_list	*iterator;
+	
+	iterator = mlx->map;
+	while (iterator)
+	{	
+		if (iterator->index == (mlx->player_y - mlx->sprite_size)
+				/ mlx->sprite_size)
+			break;
+		iterator = iterator->next;
+	}
+	return(iterator);
+}
+
 t_list	*get_y(t_mlx *mlx, int keycode)
 {
 	t_list	*iterator;
 	
 	if (keycode == DOWN)
-	{
-		iterator = mlx->map;
-		while (iterator)
-		{	
-			if (iterator->index == (mlx->player_y + mlx->sprite_size) / mlx->sprite_size)
-				break;
-			iterator = iterator->next;
-		}	
-	}
+		iterator = get_pos_down(mlx);
 	else if (keycode == UP)
-	{
-		iterator = mlx->map;
-		while (iterator)
-		{	
-			if (iterator->index == (mlx->player_y - mlx->sprite_size) / mlx->sprite_size)
-				break;
-			iterator = iterator->next;
-		}
-	}
+		iterator = get_pos_up(mlx);
 	else if (keycode == RIGHT || keycode == LEFT)
-	{
-		iterator = mlx->map;
-		while (iterator->next)
-		{	
-			if (iterator->index == mlx->player_y / mlx->sprite_size)
-				break;
-			iterator = iterator->next;
-		}
-	}
+		iterator = get_pos_right_left(mlx);
 	return (iterator);
 }
 
@@ -91,29 +98,16 @@ int	can_go(t_mlx *mlx, int keycode)
 	t_list	*y;
 
 	y = get_y(mlx, keycode);
-	printf("x = %d\n", (mlx->player_x) / mlx->sprite_size);
-	printf("index = %d\n", y->index);
-	printf("element : %c\n", y->line[mlx->player_x / mlx->sprite_size]);
 	if (keycode == UP && y->line[(mlx->player_x) / mlx->sprite_size] == '1')
-	{
-		printf("can't go up!\n");
 		return (0);
-	}
 	if (keycode == DOWN && y->line[(mlx->player_x) / mlx->sprite_size] == '1')
-	{
-		printf("can't go down!\n");
 		return (0);
-	}
-	if (keycode == LEFT && y->line[(mlx->player_x - mlx->sprite_size) / mlx->sprite_size] == '1')
-	{
-		printf("can't go left!\n");
+	if (keycode == LEFT && y->line[(mlx->player_x - mlx->sprite_size)
+		 / mlx->sprite_size] == '1')
 		return (0);
-	}
-	if (keycode == RIGHT && y->line[(mlx->player_x + mlx->sprite_size) / mlx->sprite_size] == '1')
-	{
-		printf("can't go right!\n");
+	if (keycode == RIGHT && y->line[(mlx->player_x + mlx->sprite_size)
+		 / mlx->sprite_size] == '1')
 		return (0);
-	}
 	return (1);
 }
 
@@ -122,7 +116,8 @@ int	ft_key_hook(int keycode, t_mlx *mlx)
 {
 	if (keycode != ESC_KEYCODE)
 	{				
-		if (keycode == UP || keycode == DOWN || keycode == LEFT || keycode == RIGHT)
+		if (keycode == UP || keycode == DOWN || keycode == LEFT
+			|| keycode == RIGHT)
 		{
 			ft_clear_player(mlx);
 			if (keycode == UP && can_go(mlx, keycode))
@@ -177,8 +172,7 @@ void	draw_background(t_mlx *mlx)
 		y = 0;
 		while (y < mlx->map_height)
 		{
-			mlx->background = mlx_xpm_file_to_image(mlx->mlx_ptr, "./media/background_1_112x112.xpm", &mlx->image_width, &mlx->image_height); // peut etre null
-			mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->background, x, y);
+			render_sprite(mlx, "bg", x, y);
 			y += mlx->sprite_size;
 		}
 		x += mlx->sprite_size;
@@ -195,7 +189,8 @@ void	render_sprite(t_mlx *mlx, char *name, int x, int y)
 	{
 		if (ft_strcmp(name, mlx->sprites[i].name) == 0)
 		{
-			mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->sprites[i].image, x, y);
+			mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, 
+				mlx->sprites[i].image, x, y);
 			return ;
 		}
 		i++;
@@ -207,32 +202,41 @@ t_sprite	load_sprite(t_mlx *mlx, char *path, char *name)
 {
 	t_sprite output;
 
-	output.image = mlx_xpm_file_to_image(mlx->mlx_ptr, path, &mlx->image_width, &mlx->image_height);
+	output.image = mlx_xpm_file_to_image(mlx->mlx_ptr, path,
+		&mlx->image_width, &mlx->image_height);
 	output.name = name;
+	printf("output.image = %p\n", output.image);
 	if (!output.image)
+	{
+		destroy_sprites(mlx);
+		ft_clear(mlx->map);
+		free_mlx(mlx);
 		exit(EXIT_FAILURE); // TODO : Quitter et liberer la mlx et les sprites
+	}
 	return (output);
 }
 
 //place all pointers to sprites in arr and male mlx->sprites point to arr.
 void	sort_sprites_in_tab(t_mlx *mlx)
 {
-	// t_sprite	tab[SPRITE_COUNT];
 	t_sprite	*arr;
 
 	arr = malloc(sizeof(t_sprite) * SPRITE_COUNT);
 	ft_bzero(arr, sizeof(t_sprite) * SPRITE_COUNT);
-	
+	mlx->sprites = arr;
+	// arr[0] = load_sprite(mlx, "./media/background_1_112x112.xpm", "bg");	
 	arr[0] = load_sprite(mlx, "./media/background_1_112x112.xpm", "bg");
-	arr[1] = load_sprite(mlx, "./media/bleak_desk_clock_112x112.xpm", "desk_clock");
-	arr[2] = load_sprite(mlx, "./media/bleak_desk_pile_of_death_112x112.xpm", "desk_pile");
-	arr[3] = load_sprite(mlx, "./media/bleak_desk_poison_water_112x112.xpm", "desk_poison");
+	arr[1] = load_sprite(mlx, "./media/bleak_desk_clock_112x112.xpm",
+		"desk_clock");
+	arr[2] = load_sprite(mlx, "./media/bleak_desk_pile_of_death_112x112.xpm",
+		"desk_pile");
+	arr[3] = load_sprite(mlx, "./media/bleak_desk_poison_wate_112x112.xpm",
+		"desk_poison");
 	arr[4] = load_sprite(mlx, "./media/exit_112x112.xpm", "exit");
 	arr[5] = load_sprite(mlx, "./media/form_1_112x112.xpm", "form_1");
 	arr[6] = load_sprite(mlx, "./media/form_2_112x112.xpm", "form_2");
 	arr[7] = load_sprite(mlx, "./media/form_3_112x112.xpm", "form_3");
 	arr[8] = load_sprite(mlx, "./media/moonkey_112x112.xpm", "moonkey");	
-	mlx->sprites = arr;
 }
 
 //place map elts in winodw
@@ -307,7 +311,7 @@ int	start_game(t_list *map)
 	mlx_hook(mlx.win_ptr, 2, 1, ft_key_hook, &mlx);
 	mlx_loop(mlx.mlx_ptr);
 	destroy_sprites(&mlx);
-	free_mlx(mlx);
+	free_mlx(&mlx);
 	return (1);
 }
 
