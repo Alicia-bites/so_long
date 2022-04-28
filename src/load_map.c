@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:56:06 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 18:32:36 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/28 19:04:57 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ void	sort_sprites_in_tab(t_mlx *mlx)
 //place map elts in winodw
 void	place_elt(t_mlx *mlx, int x, int y, int elt)
 {
+	static int	i = 1;
+
 	if (elt == 'P')
 	{
 		render_sprite(mlx, "moonkey", x, y);
@@ -83,7 +85,18 @@ void	place_elt(t_mlx *mlx, int x, int y, int elt)
 		mlx->player_y = y;
 	}
 	else if (elt == '1')
-		render_sprite(mlx, "desk_clock", x, y);
+	{
+		printf("i = %d\n", i);
+		if (i == 1)
+			render_sprite(mlx, "desk_clock", x, y);
+		else if (i == 2)
+			render_sprite(mlx, "desk_pile", x, y);
+		else if (i == 3)
+			render_sprite(mlx, "desk_poison", x, y);
+		if (i == 3)
+			i = 0;
+		i++;
+	}
 	else if (elt == 'E')
 		render_sprite(mlx, "exit", x, y);
 	else if (elt == 'C')
