@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:04:29 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 15:16:42 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/28 16:27:56 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,6 @@ t_list	*get_y(t_mlx *mlx, int keycode)
 	if (keycode == DOWN)
 	{
 		iterator = mlx->map;
-		// while (iterator->next)
-		// 	iterator = iterator->next;
 		while (iterator)
 		{	
 			if (iterator->index == (mlx->player_y + mlx->sprite_size) / mlx->sprite_size)
@@ -95,13 +93,13 @@ int	can_go(t_mlx *mlx, int keycode)
 	y = get_y(mlx, keycode);
 	printf("x = %d\n", (mlx->player_x) / mlx->sprite_size);
 	printf("index = %d\n", y->index);
-	printf("element : %c\n", y->line[mlx->player_y / mlx->sprite_size]);
-	if (keycode == UP && y->line[(mlx->player_y - mlx->sprite_size) / mlx->sprite_size] == '1')
+	printf("element : %c\n", y->line[mlx->player_x / mlx->sprite_size]);
+	if (keycode == UP && y->line[(mlx->player_x) / mlx->sprite_size] == '1')
 	{
 		printf("can't go up!\n");
 		return (0);
 	}
-	if (keycode == DOWN && y->line[(mlx->player_y + mlx->sprite_size) / mlx->sprite_size] == '1')
+	if (keycode == DOWN && y->line[(mlx->player_x) / mlx->sprite_size] == '1')
 	{
 		printf("can't go down!\n");
 		return (0);
