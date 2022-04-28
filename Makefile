@@ -6,7 +6,7 @@
 #    By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 14:02:33 by amarchan          #+#    #+#              #
-#    Updated: 2022/04/25 15:11:01 by amarchan         ###   ########.fr        #
+#    Updated: 2022/04/28 12:13:15 by amarchan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ DIR_LIBFT = libft/
 DIR_FT_PRINTF = ft_printf/
 
 SRCS =	src/so_long.c \
+		src/clean_up.c \
 		parsing/parsing.c \
 		parsing/parsing_utils.c \
 		parsing/parsing_utils_2.c \

@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/27 15:08:30 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/04/28 13:39:26 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 #define ISNOT_REC -5
 #define EMPTY_LINE -6
 #define HOLE_WALL -7
+#define PTR_FAIL -8
 
 #define ESC_KEYCODE 65307
 #define UP 119
@@ -37,7 +38,7 @@
 #define LEFT 97
 #define RIGHT 100
 
-#define SPRITE_COUNT 30
+#define SPRITE_COUNT 9
 
 typedef struct s_sprite
 {
@@ -47,13 +48,14 @@ typedef struct s_sprite
 
 typedef struct s_mlx
 {
+	t_list		*map;
 	int			image_height;
 	int			image_width;
 	int			map_height;
 	int			map_length;
 	int			sprite_size;
-	int			x;
-	int			y;
+	int			player_x;
+	int			player_y;
 	t_sprite	*sprites;
 	void		*background;
 	void		*image;
@@ -72,25 +74,42 @@ typedef struct	s_data
 }				t_data;
 
 //parsing
-int		ft_panic(int errcode, int i);
-t_list	*ft_parse(char *argv);
-int		ft_count(char *str, char c);
-int		line_is_wall(char *str);
-int		col_is_wall(char *str);
-int		check_char(char *str);
-int		ft_check_walls(t_list *lst);
-int		is_rectangular(t_list *lst);
-int		ft_row_length(const char *s);
-t_list	*ft_read_map(char *argv);
-int		ft_count_elts(t_list *lst);
-int		ft_check_elts(t_list *lst);
-void	ft_print_lst(t_list *lst);
-t_list	*ft_create_list(char *line);
-int		ft_count_elts(t_list *lst);
-int		is_rectangular(t_list *lst);
-int		ft_row_length(const char *s);
+int			ft_panic(int errcode, int i);
+t_list		*ft_parse(char *argv);
+int			ft_count(char *str, char c);
+int			line_is_wall(char *str);
+int			col_is_wall(char *str);
+int			check_char(char *str);
+int			ft_check_walls(t_list *lst);
+int			is_rectangular(t_list *lst);
+int			ft_row_length(const char *s);
+t_list		*ft_read_map(char *argv);
+int			ft_count_elts(t_list *lst);
+int			ft_check_elts(t_list *lst);
+void		ft_print_lst(t_list *lst);
+t_list		*ft_create_list(char *line);
+int			ft_count_elts(t_list *lst);
+int			is_rectangular(t_list *lst);
+int			ft_row_length(const char *s);
+
+//game
+int			start_game(t_list *map);
+int			draw_map(t_list *map, t_mlx *mlx);
+void		place_elt(t_mlx *mlx, int x, int y, int elt);
+void		sort_sprites_in_tab(t_mlx *mlx);
+t_sprite	load_sprite(t_mlx *mlx, char *path, char *name);
+void		render_sprite(t_mlx *mlx, char *name, int x, int y);
+void		draw_background(t_mlx *mlx);
+int			get_map_height(t_list *map);
+void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int			ft_key_hook(int keycode, t_mlx *mlx);
+void		ft_clear_player(t_mlx *mlx);
+void		ft_render_player(t_mlx *mlx);
+int			ft_redcross(t_mlx *mlx);
 
 //clean up
-void	ft_clear(t_list *lst);
+void		ft_clear(t_list *lst);
+void		destroy_sprites(t_mlx *mlx);
+void		free_mlx(t_mlx mlx);
 
 #endif
