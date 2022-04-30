@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:56:06 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 19:04:57 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/01 00:38:17 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	place_elt(t_mlx *mlx, int x, int y, int elt)
 	}
 	else if (elt == '1')
 	{
-		printf("i = %d\n", i);
 		if (i == 1)
 			render_sprite(mlx, "desk_clock", x, y);
 		else if (i == 2)
