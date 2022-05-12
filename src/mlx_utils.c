@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:58:55 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 18:33:53 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/04 19:57:27 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 #include "../minilibx-linux/libmlx.h"
 
 //close window
-int	ft_redcross(t_mlx *mlx)
+int	ft_redcross(t_mlx *mlx, int x)
 {
-	printf("Leaving the game. See you later!\n");
+	if (x == 0)
+		ft_printf("Leaving the game. See you later!\n");
+	if (x == 1)
+		ft_printf("You found the exit and collected all the forms!");
 	mlx_loop_end(mlx->mlx_ptr);
 	return (0);
 }

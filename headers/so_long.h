@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 18:47:15 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/04 19:57:45 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ t_list		*get_pos_right_left(t_mlx *mlx);
 void		ft_render_player(t_mlx *mlx);
 
 //mlx_utils
-int			ft_redcross(t_mlx *mlx);
+int			ft_redcross(t_mlx *mlx, int x);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 //clean up
