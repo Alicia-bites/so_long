@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 18:00:34 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/13 14:17:17 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/13 14:27:09 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	ft_key_hook(int keycode, t_mlx *mlx)
 {
 	int	collectibles;
 	static int	temp = 0;
+	static int	count = 1;
 
 	collectibles = is_collectible(mlx, keycode);
 	if (keycode != ESC_KEYCODE)
@@ -56,6 +57,7 @@ int	ft_key_hook(int keycode, t_mlx *mlx)
 			mlx->player_x -= mlx->sprite_size;
 		else if (keycode == RIGHT && can_go(mlx, keycode))
 			mlx->player_x += mlx->sprite_size;
+		ft_printf("number of mooves : %d\n\n", count++);
 		ft_render_player(mlx);
 	}
 	else

@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:14:40 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/13 14:15:05 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/13 14:23:38 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,6 @@ int	is_exit(t_mlx *mlx, int keycode)
 
 void	found_exit(t_mlx *mlx, int collectibles)
 {
-	ft_printf("%d\n", collectibles);
-	ft_printf("%d\n", mlx->n_collectibles);
 	if (collectibles == mlx->n_collectibles)
 		ft_redcross(mlx, 1);
 	else
@@ -81,6 +79,7 @@ int	handle_collec(t_mlx *mlx, int collectibles)
 
 	if (collectibles == mlx->n_collectibles)
 		temp = collectibles;
-	ft_printf("collected %d form(s)\n", collectibles);
+	ft_printf("collected %d form(s)!\nNeed %d more!\n\n", 
+		collectibles, mlx->n_collectibles - collectibles);
 	return (temp);
 }
