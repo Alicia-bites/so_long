@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/12 15:47:46 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/13 11:34:43 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_mlx
 	int			map_height;
 	int			map_length;
 	int			sprite_size;
+	int			n_collectibles;
 	int			player_x;
 	int			player_y;
 	t_sprite	*sprites;

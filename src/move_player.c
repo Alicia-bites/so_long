@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 18:00:34 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/12 15:58:28 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/13 11:34:07 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,118 +47,109 @@ int	can_go(t_mlx *mlx, int keycode)
 	return (1);
 }
 
-int	been_up_down(t_mlx *mlx, int keycode)
-{
-	static int	was_y = -1;
-	static int	was_x = -1;
+// int	been_up_down(t_mlx *mlx, int keycode)
+// {
+// 	static int	was_y = -1;
+// 	static int	was_x = -1;
 	
-	if (keycode == UP && was_x == mlx->player_x)
-	{
-		if (was_y == mlx->player_y - mlx->sprite_size)
-			return (1);
-		else
-			{
-				was_x = mlx->player_x;
-				was_y = mlx->player_y;
-				return (0);
-			}		
-	}
-	if (keycode == DOWN && was_x == mlx->player_x)
-	{
-		if (was_y == mlx->player_y + mlx->sprite_size)
-			return (1);
-		else
-			{
-				was_x = mlx->player_x;
-				was_y = mlx->player_y;
-				return (0);
-			}		
-	}
-}
+// 	if (keycode == UP && was_x == mlx->player_x)
+// 	{
+// 		if (was_y == mlx->player_y - mlx->sprite_size)
+// 			return (1);
+// 		else
+// 			{
+// 				was_x = mlx->player_x;
+// 				was_y = mlx->player_y;
+// 				return (0);
+// 			}		
+// 	}
+// 	if (keycode == DOWN && was_x == mlx->player_x)
+// 	{
+// 		if (was_y == mlx->player_y + mlx->sprite_size)
+// 			return (1);
+// 		else
+// 			{
+// 				was_x = mlx->player_x;
+// 				was_y = mlx->player_y;
+// 				return (0);
+// 			}		
+// 	}
+// }
 
-int	been_right_left(t_mlx *mlx, int keycode)
-{
-	static int	was_y = -1;
-	static int	was_x = -1;
+// int	been_right_left(t_mlx *mlx, int keycode)
+// {
+// 	static int	was_y = -1;
+// 	static int	was_x = -1;
 	
-	if (keycode == RIGHT && was_y == mlx->player_y)
-	{
-		if (was_y == mlx->player_x - mlx->sprite_size)
-			return (1);
-		else
-			{
-				was_x = mlx->player_x;
-				was_y = mlx->player_y;
-				return (0);
-			}		
-	}
-	if (keycode == LEFT && was_y == mlx->player_y)
-	{
-		if (was_y == mlx->player_x + mlx->sprite_size)
-			return (1);
-		else
-			{
-				was_x = mlx->player_x;
-				was_y = mlx->player_y;
-				return (0);
-			}		
-	}
-	return (1);
-}
+// 	if (keycode == RIGHT && was_y == mlx->player_y)
+// 	{
+// 		if (was_y == mlx->player_x - mlx->sprite_size)
+// 			return (1);
+// 		else
+// 			{
+// 				was_x = mlx->player_x;
+// 				was_y = mlx->player_y;
+// 				return (0);
+// 			}		
+// 	}
+// 	if (keycode == LEFT && was_y == mlx->player_y)
+// 	{
+// 		if (was_y == mlx->player_x + mlx->sprite_size)
+// 			return (1);
+// 		else
+// 			{
+// 				was_x = mlx->player_x;
+// 				was_y = mlx->player_y;
+// 				return (0);
+// 			}		
+// 	}
+// 	return (1);
+// }
 
-int	been_there(t_mlx *mlx, int keycode)
-{
-	static int	first = 1;
+// int	been_there(t_mlx *mlx, int keycode)
+// {
+// 	static int	first = 1;
 
-	if (first)
-	{
-		first = 0;
-		return (0);
-	}
-	else
-	{
-		if ((keycode == UP || keycode == DOWN) && been_up_down(mlx, keycode))
-			return (1);
-		else if ((keycode == RIGHT || keycode == LEFT) && 
-			been_right_left(mlx, keycode))
-			return (1);
-		return (0);
-	}
-}
+// 	if (first)
+// 	{
+// 		first = 0;
+// 		return (0);
+// 	}
+// 	else
+// 	{
+// 		if ((keycode == UP || keycode == DOWN) && been_up_down(mlx, keycode))
+// 			return (1);
+// 		else if ((keycode == RIGHT || keycode == LEFT) && 
+// 			been_right_left(mlx, keycode))
+// 			return (1);
+// 		return (0);
+// 	}
+// }
 
 int	is_collectible(t_mlx *mlx, int keycode)
 {
 	t_list	*y;
-	int	count_forms;
+	static int	count_forms = 1;
 	
-	count_forms = 1;
-	y = get_y(mlx, keycode);
-	if (keycode == UP && y->line[(mlx->player_x) / mlx->sprite_size] == 'C' && 
-		!been_there(mlx, keycode))
-	{
-		puts("up");
-		return (count_forms++);
-	}
-	if (keycode == DOWN && y->line[(mlx->player_x) / mlx->sprite_size] == 'C' &&
-		!been_there(mlx, keycode))
-	{
-		puts("down");
-		return (count_forms++);
-	}
-	if (keycode == LEFT && y->line[(mlx->player_x - mlx->sprite_size)
-			/ mlx->sprite_size] == 'C' && !been_there(mlx, keycode))
-	{
-		puts("left");
-		ft_printf("%d\n", been_there(mlx, keycode));
-		return (count_forms++);				
-	}
-	if (keycode == RIGHT && y->line[(mlx->player_x + mlx->sprite_size)
-			/ mlx->sprite_size] == 'C' && !been_there(mlx, keycode))
-	{
-		puts("right");
-		ft_printf("%d\n", count_forms);
-		return (count_forms++);
-	}
+    y = get_y(mlx, keycode);
+    if ((keycode == UP || keycode == DOWN) &&
+		y->line[mlx->player_x / mlx->sprite_size] == 'C')
+    {
+        y->line[mlx->player_x / mlx->sprite_size] = '0';
+        return (count_forms++);
+    }
+    if (keycode == LEFT && y->line[(mlx->player_x - mlx->sprite_size)
+            / mlx->sprite_size] == 'C')
+    {
+        y->line[(mlx->player_x - mlx->sprite_size) / mlx->sprite_size] = '0';
+        return (count_forms++);                
+    }
+    if (keycode == RIGHT && y->line[(mlx->player_x + mlx->sprite_size)
+            / mlx->sprite_size] == 'C')
+    {
+        y->line[(mlx->player_x + mlx->sprite_size) / mlx->sprite_size] = '0';
+        return (count_forms++);
+    }
 	return (0);
 }
 
