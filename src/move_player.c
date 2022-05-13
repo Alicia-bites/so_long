@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 18:00:34 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/13 11:34:07 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/13 11:58:29 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,20 +153,53 @@ int	is_collectible(t_mlx *mlx, int keycode)
 	return (0);
 }
 
+int	is_exit(t_mlx *mlx, int keycode)
+{
+	t_list	*y;
+	
+    y = get_y(mlx, keycode);
+    if ((keycode == UP || keycode == DOWN) &&
+		y->line[mlx->player_x / mlx->sprite_size] == 'E')
+    {
+        return (1);
+    }
+    if (keycode == LEFT && y->line[(mlx->player_x - mlx->sprite_size)
+            / mlx->sprite_size] == 'E')
+    {
+        return (1);                
+    }
+    if (keycode == RIGHT && y->line[(mlx->player_x + mlx->sprite_size)
+            / mlx->sprite_size] == 'E')
+    {
+        return (1);
+    }
+	return (0);
+}
+
+void	found_exit(t_mlx *mlx, int collectibles)
+{
+	if (collectibles == mlx->n_collectibles)
+		ft_redcross(mlx, 1);
+	else
+		ft_redcross(mlx, 2);
+}
+
 //define how player move around
 int	ft_key_hook(int keycode, t_mlx *mlx)
 {
-	int	collectible;
+	int	collectibles;
 
-	collectible = is_collectible(mlx, keycode);
+	collectibles = is_collectible(mlx, keycode);
 	if (keycode != ESC_KEYCODE)
 	{				
 		if (keycode == UP || keycode == DOWN || keycode == LEFT
 			|| keycode == RIGHT)
 		{
 			ft_clear_player(mlx);
-			if (collectible)
-				ft_printf("collected %d form(s)\n", collectible);
+			if (collectibles)
+				ft_printf("collected %d form(s)\n", collectibles);
+			if (is_exit(mlx, keycode))
+				found_exit(mlx, collectibles);
 			if (keycode == UP && can_go(mlx, keycode))
 				mlx->player_y -= mlx->sprite_size;
 			else if (keycode == DOWN && can_go(mlx, keycode))

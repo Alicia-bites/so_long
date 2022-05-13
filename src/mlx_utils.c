@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:58:55 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/04 19:57:27 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/13 12:02:51 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ int	ft_redcross(t_mlx *mlx, int x)
 	if (x == 0)
 		ft_printf("Leaving the game. See you later!\n");
 	if (x == 1)
-		ft_printf("You found the exit and collected all the forms!");
+		ft_printf("WINNER! You collected all the forms and you are free from bureaucracie! Until the next time...\n");
+	if (x == 2)
+		ft_printf("LOOSER! You didn't collect all the forms! Your soul belong to us now...\n");
 	mlx_loop_end(mlx->mlx_ptr);
 	return (0);
 }
