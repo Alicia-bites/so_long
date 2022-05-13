@@ -6,7 +6,7 @@
 #    By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 14:02:33 by amarchan          #+#    #+#              #
-#    Updated: 2022/04/28 18:02:37 by amarchan         ###   ########.fr        #
+#    Updated: 2022/05/13 14:14:28 by amarchan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ SRCS =	src/so_long.c \
 		src/load_map_2.c \
 		src/move_player.c \
 		src/move_player_2.c \
+		src/collect_and_exit.c \
 		src/mlx_utils.c \
 		parsing/parsing.c \
 		parsing/parsing_utils.c \

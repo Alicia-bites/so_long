@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/13 11:34:43 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/13 14:17:14 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,16 +108,20 @@ void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 //move_player
 int			ft_key_hook(int keycode, t_mlx *mlx);
 int			can_go(t_mlx *mlx, int keycode);
-t_list		*get_y(t_mlx *mlx, int keycode);
-t_list		*get_y_up(t_mlx *mlx);
-t_list		*get_y_down(t_mlx *mlx);
-t_list		*get_y_right_left(t_mlx *mlx);
-void		ft_clear_player(t_mlx *mlx);
-void		ft_render_player(t_mlx *mlx);
 
 //move_player_2
-t_list		*get_pos_right_left(t_mlx *mlx);
-void		ft_render_player(t_mlx *mlx);
+t_list	*get_y(t_mlx *mlx, int keycode);
+t_list	*get_y_right_left(t_mlx *mlx);
+t_list	*get_y_up(t_mlx *mlx);
+t_list	*get_y_down(t_mlx *mlx);
+void	ft_clear_player(t_mlx *mlx);
+void	ft_render_player(t_mlx *mlx);
+
+//collect_and_exit
+int	handle_collec(t_mlx *mlx, int collectibles);
+void	found_exit(t_mlx *mlx, int collectibles);
+int	is_exit(t_mlx *mlx, int keycode);
+int	is_collectible(t_mlx *mlx, int keycode);
 
 //mlx_utils
 int			ft_redcross(t_mlx *mlx, int x);
