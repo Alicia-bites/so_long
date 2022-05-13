@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 18:00:34 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/13 14:27:09 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/13 15:13:44 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 int	can_go(t_mlx *mlx, int keycode)
 {
 	t_list	*y;
-	int	count_forms;
-	
+	int		count_forms;
+
 	y = get_y(mlx, keycode);
 	if (keycode == UP && y->line[(mlx->player_x) / mlx->sprite_size] == '1')
 		return (0);
@@ -34,36 +34,67 @@ int	can_go(t_mlx *mlx, int keycode)
 	return (1);
 }
 
+t_list	*get_y(t_mlx *mlx, int keycode)
+{
+	t_list	*iterator;
+
+	if (keycode == DOWN)
+		iterator = get_y_down(mlx);
+	else if (keycode == UP)
+		iterator = get_y_up(mlx);
+	else if (keycode == RIGHT || keycode == LEFT)
+		iterator = get_y_right_left(mlx);
+	return (iterator);
+}
+
+void	move_player(t_mlx *mlx, int keycode)
+{
+	static int	count = 1;
+
+	if (keycode == UP && can_go(mlx, keycode))
+	{
+		mlx->player_y -= mlx->sprite_size;
+		ft_printf("number of moves %d\n\n", count++);
+	}
+	else if (keycode == DOWN && can_go(mlx, keycode))
+	{
+		mlx->player_y += mlx->sprite_size;
+		ft_printf("number of moves %d\n\n", count++);
+	}
+	else if (keycode == LEFT && can_go(mlx, keycode))
+	{
+		mlx->player_x -= mlx->sprite_size;
+		ft_printf("number of moves %d\n\n", count++);
+	}
+	else if (keycode == RIGHT && can_go(mlx, keycode))
+	{
+		mlx->player_x += mlx->sprite_size;
+		ft_printf("number of moves %d\n\n", count++);
+	}
+}
+
 //define how player move around
 int	ft_key_hook(int keycode, t_mlx *mlx)
 {
-	int	collectibles;
+	int			collectibles;
 	static int	temp = 0;
-	static int	count = 1;
 
 	collectibles = is_collectible(mlx, keycode);
 	if (keycode != ESC_KEYCODE)
-	{				
-		ft_clear_player(mlx);
-		if (collectibles)
-			temp = handle_collec(mlx, collectibles);
-		if (is_exit(mlx, keycode))
-			found_exit(mlx, temp);
-		if (keycode == UP && can_go(mlx, keycode))
-			mlx->player_y -= mlx->sprite_size;
-		else if (keycode == DOWN && can_go(mlx, keycode))
-			mlx->player_y += mlx->sprite_size;
-		else if (keycode == LEFT && can_go(mlx, keycode))
-			mlx->player_x -= mlx->sprite_size;
-		else if (keycode == RIGHT && can_go(mlx, keycode))
-			mlx->player_x += mlx->sprite_size;
-		ft_printf("number of mooves : %d\n\n", count++);
-		ft_render_player(mlx);
+	{	
+		if (keycode == UP || keycode == DOWN
+			|| keycode == LEFT || keycode == RIGHT)
+		{
+			ft_clear_player(mlx);
+			if (collectibles)
+				temp = handle_collec(mlx, collectibles);
+			if (is_exit(mlx, keycode))
+				found_exit(mlx, temp);
+			move_player(mlx, keycode);
+			ft_render_player(mlx);
+		}
 	}
 	else
 		ft_redcross(mlx, 0);
 	return (keycode);
 }
-
-
-

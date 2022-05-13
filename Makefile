@@ -6,7 +6,7 @@
 #    By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/04/13 14:02:33 by amarchan          #+#    #+#              #
-#    Updated: 2022/05/13 14:14:28 by amarchan         ###   ########.fr        #
+#    Updated: 2022/05/13 15:24:30 by amarchan         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ DIR_LIBFT = libft/
 DIR_FT_PRINTF = ft_printf/
 
 SRCS =	src/so_long.c \
+		src/sprite_size.c \
 		src/clean_up.c \
 		src/load_map.c \
 		src/load_map_2.c \

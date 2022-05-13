@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:39 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 18:47:42 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/13 15:17:37 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ t_list	*ft_read_map(char *argv)
 		lst = ft_create_list(line);
 		line = get_next_line(fd);
 	}
-	// ft_print_lst(lst);
 	return (lst);
 }
 

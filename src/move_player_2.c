@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 18:00:37 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/13 14:16:26 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/13 15:14:27 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,18 +69,5 @@ t_list	*get_y_right_left(t_mlx *mlx)
 			break ;
 		iterator = iterator->next;
 	}
-	return (iterator);
-}
-
-t_list	*get_y(t_mlx *mlx, int keycode)
-{
-	t_list	*iterator;
-
-	if (keycode == DOWN)
-		iterator = get_y_down(mlx);
-	else if (keycode == UP)
-		iterator = get_y_up(mlx);
-	else if (keycode == RIGHT || keycode == LEFT)
-		iterator = get_y_right_left(mlx);
 	return (iterator);
 }
