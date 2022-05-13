@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/04 19:57:45 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:47:46 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,9 @@ void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int			ft_key_hook(int keycode, t_mlx *mlx);
 int			can_go(t_mlx *mlx, int keycode);
 t_list		*get_y(t_mlx *mlx, int keycode);
-t_list		*get_pos_up(t_mlx *mlx);
-t_list		*get_pos_down(t_mlx *mlx);
+t_list		*get_y_up(t_mlx *mlx);
+t_list		*get_y_down(t_mlx *mlx);
+t_list		*get_y_right_left(t_mlx *mlx);
 void		ft_clear_player(t_mlx *mlx);
 void		ft_render_player(t_mlx *mlx);
 

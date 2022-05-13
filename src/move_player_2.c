@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 18:00:37 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 18:37:35 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:48:13 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,37 @@ void	ft_clear_player(t_mlx *mlx)
 		mlx->player_x, mlx->player_y);
 }
 
-t_list	*get_pos_right_left(t_mlx *mlx)
+t_list	*get_y_down(t_mlx *mlx)
+{
+	t_list	*iterator;
+
+	iterator = mlx->map;
+	while (iterator)
+	{	
+		if (iterator->index == (mlx->player_y + mlx->sprite_size)
+			/ mlx->sprite_size)
+			break ;
+		iterator = iterator->next;
+	}
+	return (iterator);
+}
+
+t_list	*get_y_up(t_mlx *mlx)
+{
+	t_list	*iterator;
+
+	iterator = mlx->map;
+	while (iterator)
+	{	
+		if (iterator->index == (mlx->player_y - mlx->sprite_size)
+			/ mlx->sprite_size)
+			break ;
+		iterator = iterator->next;
+	}
+	return (iterator);
+}
+
+t_list	*get_y_right_left(t_mlx *mlx)
 {
 	t_list	*iterator;
 
