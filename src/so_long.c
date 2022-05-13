@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:04:29 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/13 11:35:08 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/13 11:39:11 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,22 @@
 #include "../ft_printf/ft_printf.h"
 #include "../libft/libft.h"
 #include "../minilibx-linux/libmlx.h"
+
+//count total number of collectibles in map
+int ft_count_c(t_mlx *mlx)
+{
+	t_list	*iterator;
+	int		count_c;
+
+	count_c = 0;
+	iterator = mlx->map;
+	while (iterator)
+	{
+		count_c += ft_count(iterator->line, 'C');
+		iterator = iterator->next;
+	}
+	return (count_c);
+}
 
 //initiate mlx, get map size, inititate game, clean up
 int	start_game(t_list *map)
@@ -25,7 +41,7 @@ int	start_game(t_list *map)
 	mlx.map = map;
 	mlx.win_ptr = NULL;
 	mlx.sprite_size = 112;
-	// mlx.n_collectibles = ft_count_c(&mlx);
+	mlx.n_collectibles = ft_count_c(&mlx);
 	mlx.map_length = (ft_strlen(map->line) - 1) * mlx.sprite_size;
 	mlx.map_height = (get_map_height(map)) * mlx.sprite_size;
 	mlx.mlx_ptr = mlx_init();
