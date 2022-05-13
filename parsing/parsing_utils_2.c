@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 12:12:52 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 18:39:42 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/12 15:34:07 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,15 @@ int	ft_count_elts(t_list *lst)
 
 	iterator = lst;
 	count_p = 0;
-	count_c = 0;
 	count_e = 0;
 	while (iterator)
 	{
 		count_p += ft_count(iterator->line, 'P');
-		count_c += ft_count(iterator->line, 'C');
 		count_e += ft_count(iterator->line, 'E');
 		iterator = iterator->next;
 	}
 	if (count_p != 1)
 		return (ft_panic(INVALID_NARG, 'P'));
-	if (count_c != 1)
-		return (ft_panic(INVALID_NARG, 'C'));
 	if (count_e != 1)
 		return (ft_panic(INVALID_NARG, 'E'));
 	return (1);
