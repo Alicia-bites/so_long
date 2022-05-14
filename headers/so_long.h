@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/13 15:41:51 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/14 17:15:45 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <string.h>
 # include <limits.h>
 # include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 # include <unistd.h>
 # include <stdint.h>
 # include <stdlib.h>
@@ -106,6 +108,10 @@ void		render_sprite(t_mlx *mlx, char *name, int x, int y);
 void		draw_background(t_mlx *mlx);
 int			get_map_height(t_list *map);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+
+//sprite_size
+int			get_sprite_size(t_mlx *mlx);
+void		get_map_dimensions(t_mlx *mlx);
 
 //move_player
 int			ft_key_hook(int keycode, t_mlx *mlx);

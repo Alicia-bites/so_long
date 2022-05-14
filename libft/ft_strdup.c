@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amarchan <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/25 18:17:05 by amarchan          #+#    #+#             */
-/*   Updated: 2021/12/06 14:58:13 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/14 17:12:53 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strdup(const char *src)
@@ -26,7 +27,7 @@ char	*ft_strdup(const char *src)
 	if (!copy)
 		return (0);
 	i = 0;
-	while (i < len)
+	while (i < len - 1)
 	{
 		copy[i] = src[i];
 		i++;

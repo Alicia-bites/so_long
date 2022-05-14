@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+	<title>so_long level generator</title>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src='assets/main.js'></script>
+	<link rel='stylesheet' type='text/css' media='screen' href='assets/main.css'>
+</head>
+<body>
+	<div class="tiles">
+		<img title="0 (empty tile)" class="selectionnable" src="game_sprites/background_1_112x112.png">
+		<img title="1 (wall)" class="selectionnable" src="game_sprites/bleak_desk_clock_112x112.png">
+		<img title="(C)ollectible" class="selectionnable selected" src="game_sprites/form_1_112x112.png">
+		<img title="(E)xit" class="selectionnable" src="game_sprites/exit_112x112.png">
+		<img title="(P)layer (spawn point)" class="selectionnable" src="game_sprites/moonkey_112x112.png">
+	</div>
+	<br>
+	<div id="level">
+
+	</div>
+	<div style="display: flex; margin-top: 30px;">
+		<select id="level-select">
+		
+		</select>
+		<button onclick="GetLevels();" style="margin-left: 12px;">Refresh</button>
+		<button onclick="SaveLevel();" style="margin-left: 12px;">Save</button>
+		<button onclick="window.location.reload();" style="margin-left: 12px;">Restart</button>
+		<input type="checkbox" id="save-locally" checked>
+		<label for="save-locally">Save levels locally</label>
+		<input type="checkbox" id="save-remote">
+		<label for="save-remote">Save levels remotely</label>
+	</div>
+	<br>
+	<div id="lint">
+		<h3>Live linter</h3>
+		<ul id="errors">
+
+		</ul>
+	</div>
+	<h3><a href="https://profile.intra.42.fr/users/jallerha" target="_blank">about</a></h6>
+</body>
+</html>

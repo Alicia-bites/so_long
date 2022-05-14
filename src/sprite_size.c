@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:24:42 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/13 16:11:38 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/14 17:50:37 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	get_map_dimensions(t_mlx *mlx)
 int	get_sprite_size(t_mlx *mlx)
 {
 	get_map_dimensions(mlx);
-	if (mlx->row_length > 78)
-		return (112);
-	if (mlx->row_length > 52)
-		return (112);
-	if (mlx->row_length > 26)
-		return (112);
+	if (mlx->row_length > 66 || mlx->col_height > 44)
+		return (32);
+	if (mlx->row_length > 44 || mlx->col_height > 22)
+		return (32);
+	if (mlx->row_length > 22 || mlx->col_height > 12)
+		return (64);
 	else 
 		return (112);
 }

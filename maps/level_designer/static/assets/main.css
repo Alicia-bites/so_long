@@ -1,0 +1,66 @@
+.level-tile {
+	border: 1px solid black;
+	height: 64px;
+	width: 64px;
+}
+
+.level-row {
+	display: flex;
+	margin: 0;
+}
+
+.selected {
+	border: 2px solid red;
+}
+
+/* Apply a 2px solid gray border to all :not(.selected) */
+.selectionnable:not(.selected) {
+	border: 2px solid gray;
+}
+
+.bleak_desk_clock_112x112 {
+	background-image: url("/game_sprites/bleak_desk_clock_112x112.png");
+}
+
+.background_1_112x112 {
+	background-image: url("/game_sprites/background_1_112x112.png");
+}
+
+.moonkey_112x112 {
+	background-image: url("/game_sprites/moonkey_112x112.png");
+}
+
+.exit_112x112 {
+	background-image: url("/game_sprites/exit_112x112.png");
+}
+
+.form_1_112x112 {
+	background-image: url("/game_sprites/form_1_112x112.png");
+}
+
+.unknown {
+	background-color: #ccc;
+}
+
+.error {
+	color: red;
+}
+
+.warning {
+	color: orange;
+}
+
+.advice {
+	color: blue;
+}
+
+img
+{
+	max-height: 64px;
+	max-width: 64px;
+}
+
+.level-tile
+{
+	background-size: contain;
+}
