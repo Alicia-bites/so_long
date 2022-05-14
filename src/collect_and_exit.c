@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:14:40 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/13 15:11:43 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/14 14:58:39 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@
 
 int	is_collectible(t_mlx *mlx, int keycode)
 {
-	t_list      *y;
-    static int  count_forms = 1;
+	t_list		*y;
+	static int	count_forms = 1;
 
 	y = get_y(mlx, keycode);
-	if ((keycode == UP || keycode == DOWN) &&
-			y->line[mlx->player_x / mlx->sprite_size] == 'C')
+	if ((keycode == UP || keycode == DOWN)
+		&& y->line[mlx->player_x / mlx->sprite_size] == 'C')
 	{
 		y->line[mlx->player_x / mlx->sprite_size] = '0';
 		return (count_forms++);
@@ -31,7 +31,7 @@ int	is_collectible(t_mlx *mlx, int keycode)
 			/ mlx->sprite_size] == 'C')
 	{
 		y->line[(mlx->player_x - mlx->sprite_size) / mlx->sprite_size] = '0';
-		return (count_forms++);                
+		return (count_forms++);
 	}
 	if (keycode == RIGHT && y->line[(mlx->player_x + mlx->sprite_size)
 			/ mlx->sprite_size] == 'C')
@@ -47,12 +47,12 @@ int	is_exit(t_mlx *mlx, int keycode)
 	t_list	*y;
 
 	y = get_y(mlx, keycode);
-	if ((keycode == UP || keycode == DOWN) 
-            && y->line[mlx->player_x / mlx->sprite_size] == 'E')
+	if ((keycode == UP || keycode == DOWN)
+		&& y->line[mlx->player_x / mlx->sprite_size] == 'E')
 		return (1);
 	if (keycode == LEFT && y->line[(mlx->player_x - mlx->sprite_size)
 			/ mlx->sprite_size] == 'E')
-		return (1);                
+		return (1);
 	if (keycode == RIGHT && y->line[(mlx->player_x + mlx->sprite_size)
 			/ mlx->sprite_size] == 'E')
 		return (1);
@@ -69,11 +69,11 @@ void	found_exit(t_mlx *mlx, int collectibles)
 
 int	handle_collec(t_mlx *mlx, int collectibles)
 {
-	int temp;
+	int	temp;
 
 	if (collectibles == mlx->n_collectibles)
 		temp = collectibles;
-    ft_printf("collected %d form(s)!\nNeed %d " \
-        "more!\n\n", collectibles, mlx->n_collectibles - collectibles);
+	ft_printf("collected %d form(s)!\nNeed %d " \
+		"more!\n\n", collectibles, mlx->n_collectibles - collectibles);
 	return (temp);
 }
