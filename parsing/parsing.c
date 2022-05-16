@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:39 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/13 15:17:37 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/16 13:27:03 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,13 +75,18 @@ t_list	*ft_read_map(char *argv)
 	t_list	*lst;
 	char	*line;
 
+	if (wrong_file(argv))
+	{
+		ft_putstr_fd("Error\nWrong type of file or empty file.\n", 1, 2);
+		exit (FILE_ERROR);
+	}
 	fd = open(argv, O_RDONLY, __O_NOFOLLOW);
 	line = get_next_line(fd);
 	if (!line)
 	{
 		free(line);
-		ft_putstr_fd("Error\nWrong or empty file.\n", 1, 2);
-		exit(0);
+		ft_putstr_fd("Error\nWrong type of file or empty file.\n", 1, 2);
+		exit(FILE_ERROR);
 	}
 	while (line != NULL)
 	{

@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/14 17:15:45 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/16 13:23:30 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define EMPTY_LINE -6
 # define HOLE_WALL -7
 # define PTR_FAIL -8
+# define FILE_ERROR -9
 
 # define ESC_KEYCODE 65307
 # define UP 119
@@ -95,6 +96,7 @@ t_list		*ft_create_list(char *line);
 int			ft_count_elts(t_list *lst);
 int			is_rectangular(t_list *lst);
 int			ft_row_length(const char *s);
+int			wrong_file(char *str);
 
 //so_long
 int			start_game(t_list *map);

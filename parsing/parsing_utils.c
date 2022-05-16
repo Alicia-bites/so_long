@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 12:06:14 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/28 18:41:25 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/16 14:24:30 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	ft_panic(int errcode, int i)
 	if (errcode == WRONG_NARG)
 		ft_printf("so_long takes one .ber as arg\n");
 	if (errcode == INVALID_ARG)
-		ft_printf("Invalid argument col %d.\n", (-i) + 1);
+		ft_printf("Invalid element col %d.\n", (-i) + 1);
 	else if (errcode == INVALID_NARG)
-		ft_printf("Number of %c elt is incorrect.\n", (char) i);
+		ft_printf("Number of %c elements is incorrect.\n", (char) i);
 	else if (errcode == ISNOT_REC)
 		ft_printf("Map is not a rectangle.\n");
 	else if (errcode == MALLOC_FAILURE)
@@ -33,7 +33,7 @@ int	ft_panic(int errcode, int i)
 		ft_printf("Found an empty line in map file.\n");
 	else if (errcode == HOLE_WALL)
 		ft_printf("Found a hole in the wall col %d.\n", (-i) + 1);
-	return (errcode);
+	exit(errcode);
 }
 
 int	check_char(char *str)
@@ -59,11 +59,11 @@ int	col_is_wall(char *str)
 
 	i = 0;
 	max = ft_strlen(str) - 2;
-	while (str[i])
+	while (str[i] && i <= max)
 	{
 		if (i == 0 && str[i] != '1')
 			return (-i);
-		if (i == max && str[max] != '1' && str[max + 1] != '\n')
+		if (i == max && str[max] != '1')
 			return (-i);
 		i++;
 	}
