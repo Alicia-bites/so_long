@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/17 15:06:25 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:54:00 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef struct s_data
 }				t_data;
 
 //parsing
-int			ft_panic(int errcode, int i);
+void		ft_panic(int errcode, int i, t_list **lst);
 t_list		*ft_parse(char *argv);
 int			ft_count(char *str, char c);
 int			line_is_wall(char *str);

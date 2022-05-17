@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 12:06:14 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/16 14:24:30 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:55:36 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "../ft_printf/ft_printf.h"
 #include "../headers/get_next_line.h"
 
-int	ft_panic(int errcode, int i)
+void	ft_panic(int errcode, int i, t_list **lst)
 {
 	ft_putstr_fd("Error", 1, 2);
 	if (errcode == WRONG_NARG)
@@ -33,6 +33,8 @@ int	ft_panic(int errcode, int i)
 		ft_printf("Found an empty line in map file.\n");
 	else if (errcode == HOLE_WALL)
 		ft_printf("Found a hole in the wall col %d.\n", (-i) + 1);
+	if (*lst)
+		ft_clear(lst);
 	exit(errcode);
 }
 

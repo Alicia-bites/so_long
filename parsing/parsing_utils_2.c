@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 12:12:52 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/16 14:22:40 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:58:21 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	is_rectangular(t_list *lst)
 		if (iterator->index == 0)
 			len = ft_row_length(iterator->line);
 		if (ft_row_length(iterator->line) != len)
-			return (ft_panic(ISNOT_REC, 0));
+			ft_panic(ISNOT_REC, 0, &lst);
 		iterator = iterator->next;
 	}
 }
@@ -64,11 +64,11 @@ int	ft_count_elts(t_list *lst)
 		iterator = iterator->next;
 	}
 	if (count_p != 1)
-		return (ft_panic(INVALID_NARG, 'P'));
+		ft_panic(INVALID_NARG, 'P', &lst);
 	if (count_e != 1)
-		return (ft_panic(INVALID_NARG, 'E'));
+		ft_panic(INVALID_NARG, 'E', &lst);
 	if (count_c < 1)
-		return (ft_panic(INVALID_NARG, 'C'));
+		ft_panic(INVALID_NARG, 'C', &lst);
 	return (1);
 }
 
@@ -77,10 +77,6 @@ int	wrong_file(char *str)
 	int	l;
 
 	l = ft_strlen(str) - 1;
-	// ft_printf("str[l] %c\n"  , str[l]);
-	// ft_printf("str[l - 1] %c\n"  , str[l - 1]);
-	// ft_printf("str[l - 2] %c\n"  , str[l - 2]);
-	// ft_printf("str[l - 3] %c\n"  , str[l - 3]);
 	if (str[l] != 'r' ||  str[l - 1] != 'e'
 		|| str[l - 2] != 'b' || str[l - 3] != '.')
 		return (1);

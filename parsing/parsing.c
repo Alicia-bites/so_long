@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:39 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/17 15:09:11 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/17 16:01:32 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ t_list	*ft_create_list(char *line)
 
 	if (ft_strlen(line) < 2)
 	{
-		ft_clear(&lst);
-		exit (ft_panic(EMPTY_LINE, 0));
+		// ft_clear(&lst);
+		ft_panic(EMPTY_LINE, 0, &lst);
 	}
 	if (i == 0)
 		lst = ft_lstnew(line, i);
@@ -63,7 +63,7 @@ int	ft_check_elts(t_list *lst)
 	while (iterator)
 	{
 		if ((check_char(iterator->line) != 1))
-			return (ft_panic(INVALID_ARG, check_char(iterator->line)));
+			ft_panic(INVALID_ARG, check_char(iterator->line), &lst);
 		iterator = iterator->next;
 	}
 	return (1);
@@ -110,9 +110,9 @@ int	ft_check_walls(t_list *lst)
 	{
 		if ((iterator->index == 0 || iterator->index == max)
 			&& line_is_wall(iterator->line) != 1)
-			return (ft_panic(HOLE_WALL, line_is_wall(iterator->line)));
+			ft_panic(HOLE_WALL, line_is_wall(iterator->line), &lst);
 		if (col_is_wall(iterator->line) != 1)
-			return (ft_panic(HOLE_WALL, col_is_wall(iterator->line)));
+			ft_panic(HOLE_WALL, col_is_wall(iterator->line), &lst);
 		iterator = iterator->next;
 	}
 	return (1);
@@ -120,18 +120,12 @@ int	ft_check_walls(t_list *lst)
 
 t_list	*ft_parse(char *argv)
 {	
-	int		err;
 	t_list	*lst;
 
 	lst = ft_read_map(argv);
-	err = is_rectangular(lst);
-	err = ft_check_elts(lst);
-	err = ft_count_elts(lst);
-	err = ft_check_walls(lst);
-	if (err >= -7 && err <= -1)
-	{
-		ft_clear(&lst);
-		exit(err);
-	}
+	is_rectangular(lst);
+	ft_check_elts(lst);
+	ft_count_elts(lst);
+	ft_check_walls(lst);
 	return (lst);
 }

@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:56:06 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/17 14:30:50 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:55:48 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	sort_sprites_in_tab(t_mlx *mlx)
 		if (!file_loc[line])
 		{
 			free_mlx(mlx);
-			ft_panic(MALLOC_FAILURE, 0);
+			ft_panic(MALLOC_FAILURE, 0, 0);
 		}
 	}
 	arr = malloc(sizeof(t_sprite) * SPRITE_COUNT);
@@ -102,7 +102,7 @@ void	sort_sprites_in_tab(t_mlx *mlx)
 	{
 		free_mlx(mlx);
 		ft_clear_file_loc(file_loc);
-		ft_panic(MALLOC_FAILURE, 0);
+		ft_panic(MALLOC_FAILURE, 0, 0);
 	}
 	ft_bzero(arr, sizeof(t_sprite) * SPRITE_COUNT);
 	mlx->sprites = arr;
