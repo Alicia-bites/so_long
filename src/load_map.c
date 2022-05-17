@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:56:06 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/14 17:17:07 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/17 10:42:42 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,12 @@ void	sort_sprites_in_tab(t_mlx *mlx)
 	{
 		file_loc[line] = choose_sprite_size(mlx);
 		file_loc[line] = ft_strdup(file_loc[line]);
-		ft_printf("file_loc[%d] = %s\n", line, file_loc[line]);
+		if (!file_loc)
+		{
+			ft_clear(mlx->map);
+			ft_panic(MALLOC_FAILURE, 0);
+		}
+		// ft_printf("file_loc[%d] = %s\n", line, file_loc[line]);
 	}
 	if (file_loc == NULL)
 		ft_printf("Enable to find file\n");
@@ -96,7 +101,7 @@ void	sort_sprites_in_tab(t_mlx *mlx)
 	ft_bzero(arr, sizeof(t_sprite) * SPRITE_COUNT);
 	mlx->sprites = arr;
 	arr[0] = load_sprite(mlx, file_loc[0], "bg");
-	printf("%s\n", file_loc[0]);
+	// printf("%s\n", file_loc[0]);
 	arr[1] = load_sprite(mlx, file_loc[1], "desk_clock");
 	arr[2] = load_sprite(mlx, file_loc[2], "desk_pile");
 	arr[3] = load_sprite(mlx, file_loc[3], "desk_poison");
@@ -105,6 +110,37 @@ void	sort_sprites_in_tab(t_mlx *mlx)
 	arr[6] = load_sprite(mlx, file_loc[6], "form_2");
 	arr[7] = load_sprite(mlx, file_loc[7], "form_3");
 	arr[8] = load_sprite(mlx, file_loc[8], "moonkey");
+	// free(file_loc[line]);
+}
+
+void	place_wall(t_mlx *mlx, int x, int y)
+{
+	static int	i = 1;
+
+	if (i == 1)
+		render_sprite(mlx, "desk_clock", x, y);
+	else if (i == 2)
+		render_sprite(mlx, "desk_pile", x, y);
+	else if (i == 3)
+		render_sprite(mlx, "desk_poison", x, y);
+	if (i == 3)
+		i = 0;
+	i++;
+}
+
+void	place_collectibles(t_mlx *mlx, int x, int y)
+{
+	static int	i = 1;
+
+	if (i == 1)
+		render_sprite(mlx, "form_1", x, y);
+	else if (i == 2)
+		render_sprite(mlx, "form_2", x, y);
+	else if (i == 3)
+		render_sprite(mlx, "form_3", x, y);
+	if (i == 3)
+		i = 0;
+	i++;
 }
 
 //place map elts in winodw
@@ -119,17 +155,7 @@ void	place_elt(t_mlx *mlx, int x, int y, int elt)
 		mlx->player_y = y;
 	}
 	else if (elt == '1')
-	{
-		if (i == 1)
-			render_sprite(mlx, "desk_clock", x, y);
-		else if (i == 2)
-			render_sprite(mlx, "desk_pile", x, y);
-		else if (i == 3)
-			render_sprite(mlx, "desk_poison", x, y);
-		if (i == 3)
-			i = 0;
-		i++;
-	}
+		place_wall(mlx, x, y);
 	else if (elt == 'E')
 		render_sprite(mlx, "exit", x, y);
 	else if (elt == 'C')
