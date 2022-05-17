@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:24:42 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/17 10:08:42 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/17 19:18:25 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,14 @@ int	get_sprite_size(t_mlx *mlx)
 			"Max map size : 80x42.\n");
 		exit(0);
 	}
-	if (mlx->row_length > 66 || mlx->col_height > 44)
+	if (mlx->row_length > 70 || mlx->col_height > 37)
 		return (32);
+	if (mlx->row_length > 66 || mlx->col_height > 32)
+		return (48);
 	if (mlx->row_length > 44 || mlx->col_height > 22)
-		return (32);
-	if (mlx->row_length > 22 || mlx->col_height > 12)
 		return (64);
+	if (mlx->row_length > 22 || mlx->col_height > 12)
+		return (80);
 	else 
 		return (112);
 }

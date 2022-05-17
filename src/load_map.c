@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:56:06 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/17 15:55:48 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/17 19:16:05 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ void	place_elt(t_mlx *mlx, int x, int y, int elt)
 	else if (elt == 'E')
 		render_sprite(mlx, "exit", x, y);
 	else if (elt == 'C')
-		render_sprite(mlx, "form_1", x, y);
+		place_collectibles(mlx, x, y);
 }
 
 //browse map given in argument and initiate drawing
