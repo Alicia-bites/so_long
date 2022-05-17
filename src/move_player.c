@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 18:00:34 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/13 15:13:44 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:10:15 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,26 +47,38 @@ t_list	*get_y(t_mlx *mlx, int keycode)
 	return (iterator);
 }
 
-void	move_player(t_mlx *mlx, int keycode)
+int	exit_ok(t_mlx *mlx, int keycode, int collectibles)
+{
+	if (is_exit(mlx, keycode))
+	{
+		if (collectibles == mlx->n_collectibles)
+			return (1);
+		else
+			return (0);
+	}
+	return (1);
+}
+
+void	move_player(t_mlx *mlx, int keycode, int col)
 {
 	static int	count = 1;
 
-	if (keycode == UP && can_go(mlx, keycode))
+	if (keycode == UP && can_go(mlx, keycode) && exit_ok(mlx, keycode, col))
 	{
 		mlx->player_y -= mlx->sprite_size;
 		ft_printf("number of moves %d\n\n", count++);
 	}
-	else if (keycode == DOWN && can_go(mlx, keycode))
+	else if (keycode == DOWN && can_go(mlx, keycode) && exit_ok(mlx, keycode, col))
 	{
 		mlx->player_y += mlx->sprite_size;
 		ft_printf("number of moves %d\n\n", count++);
 	}
-	else if (keycode == LEFT && can_go(mlx, keycode))
+	else if (keycode == LEFT && can_go(mlx, keycode) && exit_ok(mlx, keycode, col))
 	{
 		mlx->player_x -= mlx->sprite_size;
 		ft_printf("number of moves %d\n\n", count++);
 	}
-	else if (keycode == RIGHT && can_go(mlx, keycode))
+	else if (keycode == RIGHT && can_go(mlx, keycode) && exit_ok(mlx, keycode, col))
 	{
 		mlx->player_x += mlx->sprite_size;
 		ft_printf("number of moves %d\n\n", count++);
@@ -90,7 +102,7 @@ int	ft_key_hook(int keycode, t_mlx *mlx)
 				temp = handle_collec(mlx, collectibles);
 			if (is_exit(mlx, keycode))
 				found_exit(mlx, temp);
-			move_player(mlx, keycode);
+			move_player(mlx, keycode, temp);
 			ft_render_player(mlx);
 		}
 	}

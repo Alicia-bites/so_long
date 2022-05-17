@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:56:06 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/17 10:42:42 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/17 14:30:50 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_sprite	load_sprite(t_mlx *mlx, char *path, char *name)
 	if (!output.image)
 	{
 		destroy_sprites(mlx);
-		ft_clear(mlx->map);
+		// ft_clear(mlx->map);
 		free_mlx(mlx);
 		exit(EXIT_FAILURE);
 	}
@@ -81,27 +81,32 @@ void	sort_sprites_in_tab(t_mlx *mlx)
 {
 	t_sprite	*arr;
 	char		*file_loc[8];
+	char		*temp;
 	int			line;
 	
 	line = -1;
+	mlx->sprites = NULL;
 	while (file_loc != NULL && line++ <= 7)
 	{
-		file_loc[line] = choose_sprite_size(mlx);
-		file_loc[line] = ft_strdup(file_loc[line]);
-		if (!file_loc)
+		temp = choose_sprite_size(mlx);
+		file_loc[line] = ft_strdup(temp);
+		free(temp);
+		if (!file_loc[line])
 		{
-			ft_clear(mlx->map);
+			free_mlx(mlx);
 			ft_panic(MALLOC_FAILURE, 0);
 		}
-		// ft_printf("file_loc[%d] = %s\n", line, file_loc[line]);
 	}
-	if (file_loc == NULL)
-		ft_printf("Enable to find file\n");
 	arr = malloc(sizeof(t_sprite) * SPRITE_COUNT);
+	if (!arr)
+	{
+		free_mlx(mlx);
+		ft_clear_file_loc(file_loc);
+		ft_panic(MALLOC_FAILURE, 0);
+	}
 	ft_bzero(arr, sizeof(t_sprite) * SPRITE_COUNT);
 	mlx->sprites = arr;
 	arr[0] = load_sprite(mlx, file_loc[0], "bg");
-	// printf("%s\n", file_loc[0]);
 	arr[1] = load_sprite(mlx, file_loc[1], "desk_clock");
 	arr[2] = load_sprite(mlx, file_loc[2], "desk_pile");
 	arr[3] = load_sprite(mlx, file_loc[3], "desk_poison");
@@ -110,7 +115,7 @@ void	sort_sprites_in_tab(t_mlx *mlx)
 	arr[6] = load_sprite(mlx, file_loc[6], "form_2");
 	arr[7] = load_sprite(mlx, file_loc[7], "form_3");
 	arr[8] = load_sprite(mlx, file_loc[8], "moonkey");
-	// free(file_loc[line]);
+	ft_clear_file_loc(file_loc);
 }
 
 void	place_wall(t_mlx *mlx, int x, int y)

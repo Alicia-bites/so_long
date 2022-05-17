@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:14:40 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/14 14:58:39 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:37:53 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,23 @@ int	is_exit(t_mlx *mlx, int keycode)
 
 void	found_exit(t_mlx *mlx, int collectibles)
 {
+	static int i = 0;
+	
 	if (collectibles == mlx->n_collectibles)
 		ft_redcross(mlx, 1);
 	else
-		ft_redcross(mlx, 2);
+	{
+		if (i == 0)
+			ft_printf("\033[0;31mSorry, you need the B12 form to exit.\033[0m\n\n");
+		else if (i == 1)
+			ft_printf("\033[0;31mCan't let you out without a A38 form!\033[0m\n\n");
+		else if (i == 2)
+			ft_printf("\033[0;31mGet the C56 if you want to get out." \
+			" Don't you look at me like this, I'm just doing ma job.\033[0m\n\n");
+		i++;
+		if (i == 3)
+			i = 0;
+	}
 }
 
 int	handle_collec(t_mlx *mlx, int collectibles)

@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:39 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/16 13:27:03 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:09:11 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_list	*ft_create_list(char *line)
 
 	if (ft_strlen(line) < 2)
 	{
-		ft_clear(lst);
+		ft_clear(&lst);
 		exit (ft_panic(EMPTY_LINE, 0));
 	}
 	if (i == 0)
@@ -130,7 +130,7 @@ t_list	*ft_parse(char *argv)
 	err = ft_check_walls(lst);
 	if (err >= -7 && err <= -1)
 	{
-		ft_clear(lst);
+		ft_clear(&lst);
 		exit(err);
 	}
 	return (lst);

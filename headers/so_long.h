@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/16 13:23:30 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/17 15:06:25 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void		get_map_dimensions(t_mlx *mlx);
 
 //move_player
 int			ft_key_hook(int keycode, t_mlx *mlx);
-void		move_player(t_mlx *mlx, int keycode);
+void		move_player(t_mlx *mlx, int keycode, int collectibles);
 t_list		*get_y(t_mlx *mlx, int keycode);
 int			can_go(t_mlx *mlx, int keycode);
 
@@ -139,8 +139,9 @@ int			ft_redcross(t_mlx *mlx, int x);
 void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 //clean up
-void		ft_clear(t_list *lst);
+void		ft_clear(t_list **lst);
 void		destroy_sprites(t_mlx *mlx);
 void		free_mlx(t_mlx *mlx);
+void		ft_clear_file_loc(char **tab);
 
 #endif
