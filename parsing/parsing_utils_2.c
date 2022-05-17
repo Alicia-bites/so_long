@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 12:12:52 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/17 15:58:21 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/17 16:04:12 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	wrong_file(char *str)
 	int	l;
 
 	l = ft_strlen(str) - 1;
-	if (str[l] != 'r' ||  str[l - 1] != 'e'
+	if (str[l] != 'r' || str[l - 1] != 'e'
 		|| str[l - 2] != 'b' || str[l - 3] != '.')
 		return (1);
 	return (0);
