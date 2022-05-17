@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 12:11:33 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/17 15:24:56 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/17 16:05:45 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_clear_file_loc(char **tab)
 	int	i;
 
 	i = 0;
-	while(i <= 8)
+	while (i <= 8)
 		free(tab[i++]);
 }
 
@@ -53,7 +53,6 @@ void	free_mlx(t_mlx *mlx)
 		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 	mlx_destroy_display(mlx->mlx_ptr);
 	free(mlx->mlx_ptr);
-	// ft_printf("%p\n", mlx->sprites);
 	if (mlx->sprites)
 		free(mlx->sprites);
 }
