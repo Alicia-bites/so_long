@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:24:42 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/17 19:18:25 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/18 11:11:11 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 void	get_map_dimensions(t_mlx *mlx)
 {
 	mlx->row_length = ft_row_length(mlx->map->line);
-	// ft_printf("row length %d\n", mlx->row_length);
+	ft_printf("row length %d\n", mlx->row_length);
 	mlx->col_height = get_map_height(mlx->map);
-	// ft_printf("col height %d\n", mlx->col_height);
+	ft_printf("col height %d\n", mlx->col_height);
 }
 
 int	get_sprite_size(t_mlx *mlx)
@@ -33,13 +33,13 @@ int	get_sprite_size(t_mlx *mlx)
 			"Max map size : 80x42.\n");
 		exit(0);
 	}
-	if (mlx->row_length > 70 || mlx->col_height > 37)
+	if (mlx->row_length > 53 || mlx->col_height > 28)
 		return (32);
-	if (mlx->row_length > 66 || mlx->col_height > 32)
+	if (mlx->row_length > 41 || mlx->col_height > 22)
 		return (48);
-	if (mlx->row_length > 44 || mlx->col_height > 22)
+	if (mlx->row_length > 33 || mlx->col_height > 18)
 		return (64);
-	if (mlx->row_length > 22 || mlx->col_height > 12)
+	if (mlx->row_length > 23 || mlx->col_height > 13)
 		return (80);
 	else 
 		return (112);

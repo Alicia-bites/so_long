@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:04:29 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/17 15:55:07 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/18 10:48:50 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	start_game(t_list *map)
 	mlx.win_ptr = NULL;
 	mlx.sprites = NULL;
 	mlx.sprite_size = get_sprite_size(&mlx);
+	ft_printf("sprite size = %d\n", mlx.sprite_size);
 	mlx.n_collectibles = ft_count_c(&mlx);
 	mlx.map_length = (ft_strlen(map->line) - 1) * mlx.sprite_size;
 	mlx.map_height = (get_map_height(map)) * mlx.sprite_size;
