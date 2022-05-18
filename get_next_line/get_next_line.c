@@ -6,13 +6,13 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 14:52:03 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/13 16:01:20 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/18 12:05:09 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/get_next_line.h"
 
-int ft_check_remember(int remember)
+int	ft_check_remember(int remember)
 {
 	if (remember >= BUFFER_SIZE)
 		remember = 0;
@@ -21,11 +21,11 @@ int ft_check_remember(int remember)
 	return (remember);
 }
 
-char *ft_get_leftovers(char *buf, int *remember)
+char	*ft_get_leftovers(char *buf, int *remember)
 {
-	int i;
-	int len;
-	char *line;
+	int		i;
+	int		len;
+	char	*line;
 
 	len = *remember;
 	while (len < BUFFER_SIZE && buf[len] != '\n')
@@ -48,18 +48,18 @@ char *ft_get_leftovers(char *buf, int *remember)
 	return (line);
 }
 
-char *ft_get_line(char *line, char *buf, int *remember, int has_read)
+char	*ft_get_line(char *line, char *buf, int *remember, int has_read)
 {
-	char *temp;
+	char	*temp;
 
 	buf[has_read] = '\0';
 	temp = ft_get_strdup(buf, remember);
 	line = ft_realloc_and_concat(line, ft_get_strlen(line),
-								 ft_get_strlen(temp), temp);
+			ft_get_strlen(temp), temp);
 	return (line);
 }
 
-char *ft_check_line(int *remember, char *line)
+char	*ft_check_line(int *remember, char *line)
 {
 	*remember = BUFFER_SIZE;
 	if (ft_get_strlen(line) == 0)
@@ -67,12 +67,12 @@ char *ft_check_line(int *remember, char *line)
 	return (line);
 }
 
-char *get_next_line(int fd)
+char	*get_next_line(int fd)
 {
-	static char buf[BUFFER_SIZE + 1];
-	static int remember;
-	char *line;
-	int has_read;
+	static char	buf[BUFFER_SIZE + 1];
+	static int	remember;
+	char		*line;
+	int			has_read;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);

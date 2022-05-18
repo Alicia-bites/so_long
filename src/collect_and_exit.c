@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:14:40 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/17 15:37:53 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/18 12:01:40 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int	is_exit(t_mlx *mlx, int keycode)
 
 void	found_exit(t_mlx *mlx, int collectibles)
 {
-	static int i = 0;
-	
+	static int	i = 0;
+
 	if (collectibles == mlx->n_collectibles)
 		ft_redcross(mlx, 1);
 	else

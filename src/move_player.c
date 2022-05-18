@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 18:00:34 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/17 15:10:15 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/18 11:54:47 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,20 @@ void	move_player(t_mlx *mlx, int keycode, int col)
 		mlx->player_y -= mlx->sprite_size;
 		ft_printf("number of moves %d\n\n", count++);
 	}
-	else if (keycode == DOWN && can_go(mlx, keycode) && exit_ok(mlx, keycode, col))
+	else if (keycode == DOWN && can_go(mlx, keycode)
+		&& exit_ok(mlx, keycode, col))
 	{
 		mlx->player_y += mlx->sprite_size;
 		ft_printf("number of moves %d\n\n", count++);
 	}
-	else if (keycode == LEFT && can_go(mlx, keycode) && exit_ok(mlx, keycode, col))
+	else if (keycode == LEFT && can_go(mlx, keycode)
+		&& exit_ok(mlx, keycode, col))
 	{
 		mlx->player_x -= mlx->sprite_size;
 		ft_printf("number of moves %d\n\n", count++);
 	}
-	else if (keycode == RIGHT && can_go(mlx, keycode) && exit_ok(mlx, keycode, col))
+	else if (keycode == RIGHT && can_go(mlx, keycode)
+		&& exit_ok(mlx, keycode, col))
 	{
 		mlx->player_x += mlx->sprite_size;
 		ft_printf("number of moves %d\n\n", count++);

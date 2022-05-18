@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:24:42 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/18 11:11:11 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/18 11:54:09 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,7 @@
 void	get_map_dimensions(t_mlx *mlx)
 {
 	mlx->row_length = ft_row_length(mlx->map->line);
-	ft_printf("row length %d\n", mlx->row_length);
 	mlx->col_height = get_map_height(mlx->map);
-	ft_printf("col height %d\n", mlx->col_height);
 }
 
 int	get_sprite_size(t_mlx *mlx)
@@ -41,6 +39,6 @@ int	get_sprite_size(t_mlx *mlx)
 		return (64);
 	if (mlx->row_length > 23 || mlx->col_height > 13)
 		return (80);
-	else 
+	else
 		return (112);
 }

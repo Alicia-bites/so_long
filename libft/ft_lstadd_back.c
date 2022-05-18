@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/05 17:53:03 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/13 17:33:58 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/18 12:03:14 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,3 @@ void	ft_lstadd_back(t_list **first_elt, t_list *new)
 		}
 	}
 }
-
