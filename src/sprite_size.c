@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 15:24:42 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/18 11:54:09 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/19 10:51:18 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	get_sprite_size(t_mlx *mlx)
 		return (48);
 	if (mlx->row_length > 33 || mlx->col_height > 18)
 		return (64);
-	if (mlx->row_length > 23 || mlx->col_height > 13)
+	if (mlx->row_length > 23 || mlx->col_height > 12)
 		return (80);
 	else
 		return (112);

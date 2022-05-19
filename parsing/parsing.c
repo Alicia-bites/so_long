@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:39 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/19 10:08:57 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/19 11:02:42 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,10 @@ t_list	*ft_create_list(char *line)
 	t_list			*new;
 
 	if (ft_strlen(line) < 2)
+	{
+		free(line);
 		ft_panic(EMPTY_LINE, 0, &lst);
+	}
 	if (i == 0)
 		lst = ft_lstnew(line, i);
 	else

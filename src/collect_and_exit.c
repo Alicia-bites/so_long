@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/13 14:14:40 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/18 12:01:40 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/19 11:03:15 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	found_exit(t_mlx *mlx, int collectibles)
 {
 	static int	i = 0;
 
+	ft_printf("collectibles : %d\n", collectibles);
 	if (collectibles == mlx->n_collectibles)
 		ft_redcross(mlx, 1);
 	else
@@ -84,6 +85,7 @@ int	handle_collec(t_mlx *mlx, int collectibles)
 {
 	int	temp;
 
+	temp = 0;
 	if (collectibles == mlx->n_collectibles)
 		temp = collectibles;
 	ft_printf("collected %d form(s)!\nNeed %d " \

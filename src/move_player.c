@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 18:00:34 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/19 10:13:11 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/19 10:57:18 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ int	ft_key_hook(int keycode, t_mlx *mlx)
 	int			collectibles;
 	static int	temp = 0;
 
+	collectibles = 0;
 	collectibles = is_collectible(mlx, keycode);
 	if (keycode != ESC_KEYCODE)
 	{	
