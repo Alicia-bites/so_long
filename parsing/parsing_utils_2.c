@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/17 12:12:52 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/17 16:04:12 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/19 10:14:04 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,13 @@ int	ft_row_length(const char *s)
 	return (i);
 }
 
-int	is_rectangular(t_list *lst)
+void	is_rectangular(t_list *lst)
 {
 	int		len;
-	int		index;
 	t_list	*iterator;
 
 	iterator = lst;
 	len = 0;
-	index = 0;
 	while (iterator)
 	{
 		if (iterator->index == 0)

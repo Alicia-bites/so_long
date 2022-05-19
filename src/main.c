@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 14:04:29 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/18 11:52:42 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/19 10:18:12 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ int	ft_count_c(t_mlx *mlx)
 //initiate mlx, get map size, inititate game, clean up
 int	start_game(t_list *map)
 {
-	t_list	*iterator;
 	t_mlx	mlx;
-	t_data	img;
 
 	mlx.map = map;
 	mlx.win_ptr = NULL;
@@ -69,10 +67,5 @@ int	main(int argc, char **argv)
 		ft_panic(WRONG_NARG, 0, &map);
 	map = ft_parse(argv[1]);
 	start_game(map);
-	if (!start_game)
-	{
-		ft_clear(&map);
-		return (-8);
-	}
 	return (0);
 }

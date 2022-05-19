@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:56:06 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/17 19:16:05 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/19 10:13:03 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ t_sprite	load_sprite(t_mlx *mlx, char *path, char *name)
 	if (!output.image)
 	{
 		destroy_sprites(mlx);
-		// ft_clear(mlx->map);
 		free_mlx(mlx);
 		exit(EXIT_FAILURE);
 	}
@@ -57,7 +56,6 @@ char	*choose_sprite_size(t_mlx *mlx)
 	int			fd;
 	static char	*line;
 
-	// ft_printf("sprite size = %d\n", mlx->sprite_size);
 	if (mlx->sprite_size == 112)
 		fd = open("./media/images_112.tbl", O_RDONLY);
 	if (mlx->sprite_size == 80)
@@ -72,20 +70,25 @@ char	*choose_sprite_size(t_mlx *mlx)
 	while (line != NULL)
 	{
 		line = get_next_line(fd);
-		// ft_printf("line : %s", line);
 		return (line);
 	}
+	return (NULL);
 }
-//place all pointers to sprites in arr and male mlx->sprites point to arr.
-void	sort_sprites_in_tab(t_mlx *mlx)
+
+char	**ft_read_sprites_tab(t_mlx *mlx)
 {
-	t_sprite	*arr;
-	char		*file_loc[8];
+	char		**file_loc;
 	char		*temp;
 	int			line;
-	
+
 	line = -1;
-	mlx->sprites = NULL;
+	file_loc = malloc(sizeof(char *) * 9);
+	if (!file_loc)
+	{
+		free_mlx(mlx);
+		ft_panic(MALLOC_FAILURE, 0, 0);
+	}
+	ft_bzero(file_loc, sizeof(char *) * 9);
 	while (file_loc != NULL && line++ <= 7)
 	{
 		temp = choose_sprite_size(mlx);
@@ -97,13 +100,20 @@ void	sort_sprites_in_tab(t_mlx *mlx)
 			ft_panic(MALLOC_FAILURE, 0, 0);
 		}
 	}
+	return (file_loc);
+}
+
+//place all pointers to sprites in arr and male mlx->sprites point to arr.
+void	sort_sprites_in_tab(t_mlx *mlx)
+{
+	t_sprite	*arr;
+	char		**file_loc;
+
+	mlx->sprites = NULL;
+	file_loc = ft_read_sprites_tab(mlx);
 	arr = malloc(sizeof(t_sprite) * SPRITE_COUNT);
 	if (!arr)
-	{
-		free_mlx(mlx);
-		ft_clear_file_loc(file_loc);
-		ft_panic(MALLOC_FAILURE, 0, 0);
-	}
+		ft_clean_arr(mlx, file_loc);
 	ft_bzero(arr, sizeof(t_sprite) * SPRITE_COUNT);
 	mlx->sprites = arr;
 	arr[0] = load_sprite(mlx, file_loc[0], "bg");
@@ -116,79 +126,5 @@ void	sort_sprites_in_tab(t_mlx *mlx)
 	arr[7] = load_sprite(mlx, file_loc[7], "form_3");
 	arr[8] = load_sprite(mlx, file_loc[8], "moonkey");
 	ft_clear_file_loc(file_loc);
-}
-
-void	place_wall(t_mlx *mlx, int x, int y)
-{
-	static int	i = 1;
-
-	if (i == 1)
-		render_sprite(mlx, "desk_clock", x, y);
-	else if (i == 2)
-		render_sprite(mlx, "desk_pile", x, y);
-	else if (i == 3)
-		render_sprite(mlx, "desk_poison", x, y);
-	if (i == 3)
-		i = 0;
-	i++;
-}
-
-void	place_collectibles(t_mlx *mlx, int x, int y)
-{
-	static int	i = 1;
-
-	if (i == 1)
-		render_sprite(mlx, "form_1", x, y);
-	else if (i == 2)
-		render_sprite(mlx, "form_2", x, y);
-	else if (i == 3)
-		render_sprite(mlx, "form_3", x, y);
-	if (i == 3)
-		i = 0;
-	i++;
-}
-
-//place map elts in winodw
-void	place_elt(t_mlx *mlx, int x, int y, int elt)
-{
-	static int	i = 1;
-
-	if (elt == 'P')
-	{
-		render_sprite(mlx, "moonkey", x, y);
-		mlx->player_x = x;
-		mlx->player_y = y;
-	}
-	else if (elt == '1')
-		place_wall(mlx, x, y);
-	else if (elt == 'E')
-		render_sprite(mlx, "exit", x, y);
-	else if (elt == 'C')
-		place_collectibles(mlx, x, y);
-}
-
-//browse map given in argument and initiate drawing
-int	draw_map(t_list *map, t_mlx *mlx)
-{
-	int		x;
-	int		y;
-	t_list	*iterator;
-
-	y = 0;
-	iterator = map;
-	mlx->image_width = 0;
-	mlx->image_height = 0;
-	draw_background(mlx);
-	while (iterator)
-	{
-		x = 0;
-		while (x < mlx->map_length)
-		{
-			place_elt(mlx, x, y, iterator->line[x / mlx->sprite_size]);
-			x += mlx->sprite_size;
-		}
-		iterator = iterator->next;
-		y += mlx->sprite_size;
-	}
-	return (0);
+	free(file_loc);
 }

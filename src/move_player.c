@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 18:00:34 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/18 11:54:47 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/19 10:13:11 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 int	can_go(t_mlx *mlx, int keycode)
 {
 	t_list	*y;
-	int		count_forms;
 
 	y = get_y(mlx, keycode);
 	if (keycode == UP && y->line[(mlx->player_x) / mlx->sprite_size] == '1')

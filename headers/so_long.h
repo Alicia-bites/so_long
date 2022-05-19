@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:56 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/17 15:54:00 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/19 10:14:43 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int			line_is_wall(char *str);
 int			col_is_wall(char *str);
 int			check_char(char *str);
 int			ft_check_walls(t_list *lst);
-int			is_rectangular(t_list *lst);
 int			ft_row_length(const char *s);
 t_list		*ft_read_map(char *argv);
 int			ft_count_elts(t_list *lst);
@@ -94,22 +93,29 @@ int			ft_check_elts(t_list *lst);
 void		ft_print_lst(t_list *lst);
 t_list		*ft_create_list(char *line);
 int			ft_count_elts(t_list *lst);
-int			is_rectangular(t_list *lst);
+void		is_rectangular(t_list *lst);
 int			ft_row_length(const char *s);
 int			wrong_file(char *str);
 
 //so_long
 int			start_game(t_list *map);
 
-//load_map
+//draw_map
 int			draw_map(t_list *map, t_mlx *mlx);
 void		place_elt(t_mlx *mlx, int x, int y, int elt);
+void		place_collectibles(t_mlx *mlx, int x, int y);
+void		place_wall(t_mlx *mlx, int x, int y);
+
+//load_map
 void		sort_sprites_in_tab(t_mlx *mlx);
+char		**ft_read_sprites_tab(t_mlx *mlx);
+char		*choose_sprite_size(t_mlx *mlx);
 t_sprite	load_sprite(t_mlx *mlx, char *path, char *name);
 void		render_sprite(t_mlx *mlx, char *name, int x, int y);
+
+//load_map_2
 void		draw_background(t_mlx *mlx);
 int			get_map_height(t_list *map);
-void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 //sprite_size
 int			get_sprite_size(t_mlx *mlx);
@@ -143,5 +149,6 @@ void		ft_clear(t_list **lst);
 void		destroy_sprites(t_mlx *mlx);
 void		free_mlx(t_mlx *mlx);
 void		ft_clear_file_loc(char **tab);
+void		ft_clean_arr(t_mlx *mlx, char **file_loc);
 
 #endif

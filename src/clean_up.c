@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 12:11:33 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/17 16:05:45 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/19 09:42:31 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,13 @@
 #include "../ft_printf/ft_printf.h"
 #include "../libft/libft.h"
 #include "../minilibx-linux/libmlx.h"
+
+void	ft_clean_arr(t_mlx *mlx, char **file_loc)
+{
+	free_mlx(mlx);
+	ft_clear_file_loc(file_loc);
+	ft_panic(MALLOC_FAILURE, 0, 0);
+}
 
 void	ft_clear_file_loc(char **tab)
 {

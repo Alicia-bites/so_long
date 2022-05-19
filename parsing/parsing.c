@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/13 13:58:39 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/17 16:03:31 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/19 10:08:57 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ t_list	*ft_create_list(char *line)
 // 	iterator = lst;
 // 	while (iterator)
 // 	{
-// 		printf("index = %d\n", iterator->index);
-// 		printf("%s", iterator->line);
+// 		ft_printf("index = %d\n", iterator->index);
+// 		ft_printf("%s", iterator->line);
 // 		iterator = iterator->next;		
 // 	}
 // 	puts("\n");

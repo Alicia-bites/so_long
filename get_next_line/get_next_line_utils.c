@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 14:51:46 by amarchan          #+#    #+#             */
-/*   Updated: 2022/04/13 16:02:08 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/05/19 10:08:34 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,14 +101,3 @@ char	*ft_free(char *str)
 		free(str);
 	return (NULL);
 }
-
-// int main()
-// {
-// 	char *str = "alicia";
-//  	char *newstr = "PA";
-//  	size_t newsize = 2;
-//  	size_t oldsize = 6;
-
-// 	printf("%s\n", ft_realloc_and_concat(str, oldsize, newsize, newstr));
-// 	return (0);
-// }
