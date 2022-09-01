@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 17:58:55 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/13 14:35:42 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/09/01 13:45:30 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../ft_printf/ft_printf.h"
 #include "../libft/libft.h"
 #include "../minilibx-linux/libmlx.h"
+
 
 //close window
 int	ft_redcross(t_mlx *mlx, int x)

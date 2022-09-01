@@ -6,7 +6,7 @@
 /*   By: amarchan <amarchan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 18:00:34 by amarchan          #+#    #+#             */
-/*   Updated: 2022/05/19 10:57:18 by amarchan         ###   ########.fr       */
+/*   Updated: 2022/09/01 14:24:49 by amarchan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	move_player(t_mlx *mlx, int keycode, int col)
 	if (keycode == UP && can_go(mlx, keycode) && exit_ok(mlx, keycode, col))
 	{
 		mlx->player_y -= mlx->sprite_size;
-		ft_printf("number of moves %d\n\n", count++);
 	}
 	else if (keycode == DOWN && can_go(mlx, keycode)
 		&& exit_ok(mlx, keycode, col))
@@ -95,6 +94,7 @@ int	ft_key_hook(int keycode, t_mlx *mlx)
 
 	collectibles = 0;
 	collectibles = is_collectible(mlx, keycode);
+	// printf("keycode = %d\n", keycode);
 	if (keycode != ESC_KEYCODE)
 	{	
 		if (keycode == UP || keycode == DOWN
